@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MoX &middot; Modern XBMC Web Interface</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="ext/css/bootstrap.min.css" rel="stylesheet">
+    <link href="ext/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="ext/css/font-awesome.min.css" rel="stylesheet">
+    <link href="ext/css/slider.css" rel="stylesheet">
+    <link href="css/mox.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="ico/favicon.png">
+    -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+  <div class="container">
+    <a class="brand" href="#" data-toggle="popover" data-content="Web Interface for XBMC" data-original-title="Stuff" data-placement="bottom">
+      MoX
+    </a>
+    
+    <ul class="nav">
+     <li data-bind="css: {active: ui.page() == 'home'}">
+      <a href="#" data-bind="click: function() { ui.setPage('home') }"><i class="icon-dashboard"></i> Home</a></li>
+     <li data-bind="css: {active: ui.page() == 'music'}">
+      <a href="#" data-bind="click: function() { ui.setPage('music') }">
+     <i class="icon-music"></i> Music
+     </a></li>
+     <li data-bind="css: {active: ui.page() == 'movies'}">
+      <a href="#" data-bind="click: function() { ui.setPage('movies') }">
+     <i class="icon-facetime-video"></i> Movies
+     </a>
+     </li>
+     <li data-bind="css: {active: ui.page() == 'tv'}">
+      <a href="#" data-bind="click: function() { ui.setPage('tv') }">
+        <i class="icon-desktop"></i> TV
+      </a>
+    </li>
+     <li data-bind="visible:player.isActive, css: {active: ui.page() == 'nowplaying'}">
+      <a href="#" data-bind="click: function() { ui.page('nowplaying') }"><i class="icon-play-circle"></i> Now Playing</a>
+     </li>
+    </ul>
+
+<form class="navbar-search pull-right">
+  <input type="text" class="search-query" placeholder="Search">
+</form>
+
+<!-- todo - change icon based on weather from meteoicons - http://www.alessioatzeni.com/meteocons/
+see also http://fontello.com/ & http://icomoon.io/app/
+ -->
+
+    <ul class="nav pull-right">
+       <li><a href="#">
+       <i class="icon-cloud"></i> <span data-bind="text: weather.conditions"></span> <span data-bind="text: weather.temperature"></span>
+       </a></li>
+    </ul>
+
+	</div>
+  </div>
+</div>
+
+
+
+  
+  <!--
+
+  
+  <div class="container">
+  <h3 class="muted">Project name</h3>
+  </div>
+
+
+<div class="container">
+  <div class="row-fluid">
+  		<div class="span4">
+      		<div class="btn-toolbar">
+		  		<div class="btn-group">
+ 		    		<a class="btn btn-large" href="#"><i class="icon-step-backward"></i></a>
+		    		<a class="btn btn-large" href="#"><i class="icon-stop"></i></a>
+		    		<a class="btn btn-large" href="#"><i class="icon-play"></i> play <i class="icon-pause"></i></a>
+ 		    		<a class="btn btn-large" href="#"><i class="icon-step-forward"></i></a>
+		  		</div>
+			</div>
+      	</div>
+      	<form class="form-search">
+	
+  		<div class="input-prepend span4 text-right pull-right">
+    		<button type="submit" class="btn"><i class="icon-search icon-white"></i></button>
+    		<input type="text" class="search-query">
+  		</div>
+
+		</form>
+  </div>
+</div>
+
+
+<hr>
+
+    <div class="container">
+      
+      <div class="masthead">
+      	
+        
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+                <li class="active"><a href="#">Music</a></li>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">TV</a></li>
+                <li>
+                <form class="navbar-search pull-right">
+  <input type="text" class="search-query" placeholder="Search">
+</form>
+                </li>
+              </ul>
+            </div>
+          </div>          
+        </div><!-- /.navbar -->
+        <!--
+        
+      </div>
+-->
+
+</div>
+
+<!-- SPACER FOR FLOATING HEADER -->
+<div class="header-spacer"></div>
+
+<div class="loader" data-bind="visible: ui.loading"></div>
+
+<!-- BREADCRUMBS -->
+<div class="container">
+<ul class="breadcrumb">
+  <li data-bind="visible: ui.page() != 'home'"><a href="#" data-bind="click: function() {ui.setPage('home');}">Home</a> <span class="divider">/</span></li>
+  <li><a href="#" data-bind="text: ui.pageName,click: function() {ui.setPage(ui.page());}"></a></li>
+  <!-- ko foreach: ui.path -->
+  <li><span class="divider">/</span> <a href="#" data-bind="text: label, click: fn"></a></li>
+  <!-- /ko -->
+  <!--<li class="active">Current</li>-->
+</ul>
+</div>
+
+<!-- HOME PAGE -->
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'home'">
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+
+    <h1></h1>
+    <p class="lead">
+      <a href="#" data-bind="click:function() {ui.setPage('music')}"><i class="icon-music icon-4x icon-border"></i></a>
+      <a href="#" data-bind="click:function() {ui.setPage('movies')}"><i class="icon-facetime-video icon-4x icon-border"></i></a>
+      <a href="#" data-bind="click:function() {ui.setPage('tv')}"><i class="icon-desktop icon-4x icon-border"></i></a>
+      <a href="#" data-bind="click:function() {ui.setPage('config')}"><i class="icon-cog icon-4x icon-border"></i></a>
+    </p>
+
+  </div>
+</div>
+
+<!-- CONFIG PAGE -->
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'config'">
+  <a href="#" data-bind="click: clearCache">
+    <i class="icon-cog"></i> Clear Cache
+  </a>
+</div>
+
+
+<!-- MUSIC PAGE -->
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'music'">
+
+  <div data-bind="visible: music.selectedArtist.artistid() == 0">
+
+  <div id="search-box" class="row-fluid">
+    <div class="span2">
+      <form class="form-search">
+        <input placeholder="Search Artists..." type="text" class="input-large search-query" data-bind="value: music.searchTerm, valueUpdate: 'keyup'">
+      </form>
+    </div>
+
+    <div class="span2 pull-right text-right"><a class="btn" href="#"> Refresh <i class="icon-refresh"></i> </a></div>
+  </div>
+
+  <table class="table table-hover table-bordered table-striped" data-bind="with:music">
+    <thead><tr><th>Artist</th><th>Genre</th><th></th></tr></thead>
+    <tbody data-bind="foreach: visibleArtists">
+      <tr data-bind="visible: visible">
+        <td data-bind="text: label, click: $parent.loadArtist"></td>
+        <!-- REDO <td data-bind="foreach: genre"><span data-bind="text: $data"></span> </td> -->
+        <td>
+          <!--<div class="btn-toolbar">
+            <div class="btn-group">
+              <a href="#" class="btn"><i class="icon-info"></i></a>-->
+              <a href="#"><i class="icon-list"></i></a>
+              <a href="#"><i class="icon-play"></i></a>
+            <!--</div>
+          </div>-->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+
+  <div data-bind="visible: music.selectedArtist.artistid() > 0, with: music.selectedArtist">
+    <h1 data-bind="text: name()"></h1>
+    <h2 data-bind="text: bio()"></h2>
+
+    <!--<img style="height: 30px;" data-bind="attr: {src: decodeURIComponent(thumbnail()).replace('image://','').replace('.jpg/','.jpg').replace('.png/','.png').replace('.JPG/','.jpg').replace('.PNG/','.png')}" />-->
+
+
+    <table class="table table-hover table-bordered table-striped">
+    <thead><tr><th>Album Name</th></tr></thead>
+    <tbody data-bind="foreach: visibleAlbums">
+      <tr><td data-bind="text: label, click: $parent.playAlbum"></td></tr>
+    </tbody>
+    </table>
+
+  </div>
+
+
+</div>
+
+<!-- MOVIES -->
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'movies'">
+
+  <div id="search-box" class="row-fluid">
+    <div class="span2">
+      <form class="form-search">
+        <input placeholder="Search Movies..." type="text" class="input-large search-query" data-bind="value: movies.searchTerm, valueUpdate: 'keyup'">
+      </form>
+    </div>
+
+    <div class="span2 pull-right text-right"><a class="btn" href="#"> Refresh <i class="icon-refresh"></i> </a></div>
+  </div>
+
+  <table class="table table-hover table-bordered table-striped" data-bind="with: movies">
+    <thead><tr><th>Status</th><th>Title</th><th>Stuff</th><th>Things</th><th>Actions</th></tr></thead>
+    <tbody data-bind="foreach: titles">
+      <tr data-bind="visible: visible">
+      	<td>
+	    	<i class="icon-ok"></i>
+	    	<i class="icon-pause"></i>
+      	</td>
+        <td data-bind="text: label, click: $parent.playMovie"></td>
+        <td data-bind="text: studio"></td>
+        <td data-bind="text: rating.toFixed(1)"></td>
+      	<td>
+	    	<i class="icon-play"></i>
+	    	<i class="icon-list"></i>
+      	</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- TV -->
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'tv', with: tv">
+
+  <!-- TV Show List -->
+  <div data-bind="visible: selectedShow.tvshowid() == 0">
+
+    <div id="search-box" class="row-fluid">
+      <div class="span2">
+        <form class="form-search">
+          <input placeholder="Search Shows..." type="text" class="input-large search-query" data-bind="value: searchTerm, valueUpdate: 'keyup'">
+        </form>
+      </div>
+
+      <div class="span2 pull-right text-right"><a class="btn" href="#"> Refresh <i class="icon-refresh"></i> </a></div>
+    </div>
+
+    <table class="table table-hover table-bordered table-striped">
+      <thead><tr><th>Title</th><th>Studio</th><th>Things</th></tr></thead>
+      <tbody data-bind="foreach: shows">
+        <tr data-bind="visible:visible">
+          <td data-bind="text: label, click: $parent.loadShow"></td>
+          <td data-bind="text: studio"></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <!-- TV Show Seasons -->
+  <table class="table table-hover table-bordered table-striped" data-bind="visible: selectedShow.tvshowid() > 0 && selectedShow.selectedSeason.season() == 0, with: selectedShow">
+    <thead><tr><th>Label</th><th>Stuff</th><th>Things</th></tr></thead>
+    <tbody data-bind="foreach: seasons">
+      <tr>
+        <td data-bind="text: label, click: $parent.loadSeason"></td>
+        <td data-bind="text: label"></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- TV Show Episodes -->
+  <table class="table table-hover table-bordered table-striped" data-bind="visible: selectedShow.tvshowid() > 0 && selectedShow.selectedSeason.season() > 0, with: selectedShow.selectedSeason">
+    <thead><tr><th>Status</th><th>Label</th><th>Resume</th><th>Runtime</th><th>Played</th><th>Streams</th><th>Rating</th><th>Actions</th></tr></thead>
+    <tbody data-bind="foreach: episodes">
+      <tr data-bind="click:$parent.playEpisode">
+        <td>
+        	<i data-bind="visible:playcount > 0" class="icon-ok"></i>
+        	<i data-bind="visible:resume.position > 0" class="icon-pause"></i>
+        </td>
+        <td data-bind="text: label"></td>
+        <td data-bind="text: resume.position + '/' + resume.total"></td>
+        <td data-bind="text: runtime"></td>
+        <td data-bind="text: playcount"></td>
+        <td data-bind="text: JSON.stringify(streamdetails)"></td>
+        <td data-bind="text: rating.toFixed(1)"></td>
+        <td>
+        	<i class="icon-play"></i>
+        	<i class="icon-list"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- NOW PLAYING -->
+
+<div data-bind="visible: player.isActive">
+
+<div class="container" style="display:none" data-bind="visible:loaded() && ui.page() == 'nowplaying'">
+  <!-- Jumbotron -->
+  <div class="jumbotron">
+
+  <div data-bind="visible: player.activePlayer() == 'audio', with: player.current">
+    <h1>
+      <span data-bind="text: artist"></span>
+    </h1>
+    <h2>
+      <span data-bind="text: title"></span>
+    </h2>
+    <p class="lead"><span data-bind="text: album"></span> (<span data-bind="text: genre"></span> - <span data-bind="text: year"></span>)</p>
+  </div>
+
+  <div data-bind="visible: player.activePlayer() == 'video', with: player.current">
+    <h1>
+      <span data-bind="text: artist"></span>
+    </h1>
+    <h2>
+      <span data-bind="text: title"></span>
+    </h2>
+    <p class="lead"><span data-bind="text: album"></span> (<span data-bind="text: genre"></span> - <span data-bind="text: year"></span>)</p>
+  </div>
+
+    <!--<a class="btn btn-large btn-success" href="#">Get started today</a>-->
+    <div class="btn-toolbar">
+      <div class="btn-group">
+        <a class="btn btn-large" href="#" data-bind="click: player.back"><i class="icon-step-backward"></i></a>
+        <a class="btn btn-large" href="#" data-bind="click: player.stop"><i class="icon-stop"></i></a>
+        <a class="btn btn-large" href="#" data-bind="click: player.pause, css: {active: !player.current.paused()}"><i class="icon-play"></i> <i class="icon-pause"></i></a>
+        <a class="btn btn-large" href="#" data-bind="click: player.forward"><i class="icon-step-forward"></i></a>
+      </div>
+    </div>
+    <br/>
+    <div class="progress progress-striped" data-bind="css: {active: !player.current.paused()}"><div class="bar" data-bind="style: {width: player.current.percentage() + '%'}"></div>
+    <hr>
+  </div>
+
+
+</div>
+
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>Playlist</h2>
+
+          <table class="table table-hover table-bordered table-striped">
+            <thead><tr><th>Item</th></tr></thead>
+            <tbody>
+              <!-- ko with: player.players.audio -->
+              <!-- ko foreach: playlist -->
+              <tr><td><i class="icon-play" data-bind="visible: $index == $parent.playlistCurrentItem()"></i> <span data-bind="text: label, click: $parent.playItem"></span></td></tr>
+              <!-- /ko -->
+              <!-- /ko -->
+              <!-- ko with: player.players.video -->
+              <!-- ko foreach: playlist -->
+              <tr><td><i class="icon-play" data-bind="visible: $index == $parent.playlistCurrentItem()"></i>  <span data-bind="text: label, click: $parent.playItem"></span></td></tr>
+              <!-- /ko -->
+              <!-- /ko -->
+            </tbody>
+          </table>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>More by Artist</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>More in Genre</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+      	<hr>
+
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <div class="span4">
+          <h2>Recently Added</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Recently Played</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Top Artists</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+      </div>
+
+  </div>
+
+      <hr>
+
+  <div class="footer">
+    <div class="container">
+        <p>&copy; Company 2013</p>
+    </div>
+  </div>
+
+    </div> <!-- /container -->
+
+<div class="navbar navbar-inverseh navbar-fixed-bottom" data-bind="visible: player.isActive">
+  <div class="navbar-inner">
+  <div class="container">
+    <a class="brand" href="#" data-bind="click: function() { ui.page('nowplaying') }"><i class="icon-play"></i> [<span data-bind="text: player.current.time"></span> / <span data-bind="text: player.current.duration"></span>] <span data-bind="text: player.current.artist"></span> - <span data-bind="text: player.current.title"></span> </a>
+
+    <div class="pull-right">
+      <a href="#" class="brand pull-right" data-bind="click: player.toggleVolumeVisible"><i data-bind="css: {'icon-volume-off':player.volume() == 0 || player.mute(), 'icon-volume-down': player.volume() > 0 && player.volume() < 100, 'icon-volume-up': player.volume() == 100}"></i></a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- POPUPS & OVERLAYS -->
+
+<div class="modals">
+
+<!--  <div class="modal hide fade" data-bind="showModal:selectedItem, with:selectedItem">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3 data-bind="text:name"></h3>
+  </div>
+  <div class="modal-body">
+    <form data-bind="submit:deselectItem"> -->
+        <!-- editor for item here -->
+    <!--</form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-bind="click:deselectItem">Close</a>
+  </div>
+</div>-->
+
+
+<div class="modal hide fade" data-bind="modal: player.volumeVisible">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Volume: <span data-bind="text:player.volume"></span>%</h3>
+  </div>
+  <div class="modal-body">
+
+ <input id="volumeSlider" type="text" class="span2 pull-right" value="" data-bind="slider: player.volume" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="0" data-slider-orientation="horizontal" data-slider-selection="after" data-slider-tooltip="hide">
+    
+  </div>
+  <div class="modal-footer">
+    <span data-bind="text:player.volume"></span>
+    <a href="#" class="btn" data-bind="click:player.toggleMute">Mute</a>
+    <a href="#" class="btn" data-bind="click:player.toggleVolumeVisible">Close</a>
+  </div>
+</div>
+
+
+<div id="volumeModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine bodyqqqq…</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary">Save changes</button>
+  </div>
+</div>
+
+</div>
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="ext/js/modernizr.js"></script>
+    <script src="ext/js/jquery.min.js"></script>
+    <script src="ext/js/bootstrap.min.js"></script>
+    <script src="ext/js/knockout.min.js"></script>
+    <!--<script src="ext/js/jquery.jsonrpc.js"></script>-->
+    <script src="ext/js/jlinq.js"></script>
+    <script type="text/javascript" src="ext/js/jquery.noty.js"></script>
+
+    <script type="text/javascript" src="ext/js/noty/layouts/top.js"></script>
+    <script type="text/javascript" src="ext/js/noty/layouts/topLeft.js"></script>
+    <script type="text/javascript" src="ext/js/noty/layouts/topRight.js"></script>
+    <script type="text/javascript" src="ext/js/noty/layouts/bottom.js"></script>
+
+    <script type="text/javascript" src="ext/js/noty/themes/default.js"></script>
+    <script type="text/javascript" src="ext/js/bootstrap-slider.js"></script>
+
+  <script type="text/javascript" src="js/XbmcWebSocketsApi.js"></script>
+  <script type="text/javascript" src="js/XbmcHttpApi.js"></script>
+  <script type="text/javascript" src="js/XbmcCachedQueryController.js"></script>
+  <script type="text/javascript" src="js/XbmcController.js"></script>
+
+    <!--<script src="js/xbmc.js"></script>-->
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+
+	<script type="text/javascript">
+		// by default model.js will connect to window.location.host
+		// if you wish to connect to a different address, set Xbmc.host = hostname
+		//Xbmc.host = '192.168.0.100';
+	</script>
+    <script src="js/model.js"></script>
+    
+<!--    <script src="js/jsonrpc.js"></script>
+    <script src="js/xbmc.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/library.js"></script>-->
+    
+    <script type="text/javascript">
+    </script>
+
+
+
+
+
+  </body>
+</html>
