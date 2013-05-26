@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>MoX by denwilliams</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/denwilliams/MoX">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/denwilliams/MoX/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/denwilliams/MoX/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>MoX</h1>
+          <p>(Mo)dern (X)BMC Web Interface.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/denwilliams">denwilliams</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h3>Status</h3>
+
+<p>Pre-alpha - only partially functional</p>
+
+<h3>About MoX</h3>
+
+<p>I love XBMC - I have an installation of it in every room in my house - but I've never been that fussed with any of the web interfaces. I have all my music on XBMC but find the on-screen GUI too slow and limited when trying to find something to play, so I tend to pull up the web interface and select my music there. The only problem there is the default web interface is <em>incredibly</em> slow. Painfully so when running XBMC on a Raspberry Pi.</p>
+
+<p>There are lots of great "mobile-focused" web interfaces out there, but not a great deal of desktop focused ones out there. I really don't see the need for a mobile web interface though with so many great iOS &amp; Android apps out there! </p>
+
+<p>The only functional desktop web UI I've used is AWXi, but the hole experience with using that thing feels awkward and dated. I really wanted something with a more modern &amp; clean feel to it, but wasn't finding anything... so I decided to build my own.</p>
+
+<p>The whole approach with MoX is to focus on the "modern", as such only v12 (Frodo) and above will be supported. In addition only modern browsers will be supported - I don't want to hold back on capabilities just so someone can use IE7.</p>
+
+<p>MoX uses a number of HTML5 features to make the experience as good as possible:
+1. LocalStorage and SessionStorage are used where available for caching server queries. This results in a <strong>significant</strong> reduction in time for common queries - even after closing &amp; reopening the browser. If not enabled then queries are cached in memory so performance is still improved 
+2. Web Sockets are used for the JSON-RPC communications where available. In addition to lower overhead for RPC calls, 2-way communication allows for instant notification of events and uber-quick feeback to the Web UI. There is also a fallback to HTTP RPC calls. </p>
+
+<p>Future versions will also incorporate:
+1. Responsive design so it will work great on tablets and phones too
+2. Playing media directly in the browser using HTML5 on supported browsers (death to Flash!)</p>
+
+<h3>Authors and Contributors</h3>
+
+<p>Written by Den Williams (<a href="https://github.com/denwilliams" class="user-mention">@denwilliams</a>)</p>
+
+<p>The XBMC controller classes have been separated into another project called XbmcControllerJs(<a href="http://denwilliams.github.io/XbmcControllerJs/">http://denwilliams.github.io/XbmcControllerJs/</a>) in the hope that it will assist others in creating more functional Web UIs. Please feel free to use that in whatever project you like.</p>
+
+<p>Utilising a number of AWESOME projects out there:
+1. Knockout
+2. Bootstrap
+3. jQuery
+4. Modernizr
+5. Noty</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
