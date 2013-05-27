@@ -39,7 +39,7 @@
         this.clearCache = function() {
             if (hasLocalStorage) localStorage.clear();
             if (hasSessionStorage) sessionStorage.clear();
-        }
+        };
 
         function _init() {
             me.loaded(true);
@@ -53,6 +53,12 @@
             me.music.loadArtists();
             me.tv.loadShows();
             me.movies.loadTitles();
+            
+            xbmc.onVolumeChanged(function(data) { console.warn(JSON.stringify(data)); });
+            xbmc.onPlayerEvent(function(data) { console.warn(JSON.stringify(data)); });
+            xbmc.onPlaylistEvent(function(data) { console.warn(JSON.stringify(data)); });
+            xbmc.onSystemEvent(function(data) { console.warn(JSON.stringify(data)); });
+
         }
 
         /**
