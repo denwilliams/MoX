@@ -1,0 +1,38 @@
+﻿<section>
+    <h2 data-bind="html:displayName"></h2>
+	<div class="buttons pull-right">
+		<a href="#" class="btn"><i class="icon-refresh"></i> Refresh</a>
+	</div>
+    <blockquote data-bind="html:description"></blockquote>
+    <h3>Titles</h3>
+    <div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
+    <ul class="movies" data-bind="foreach: movies">
+        <li data-bind="css: { altrow: $index()%2 }">
+	        <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
+	        <h4 data-bind="text: label"></h4>
+	        <div class="year" data-bind="text: year"></div>
+	        <div class="rating" data-bind="numericText: rating, precision: 1"></div>
+	        <div class="tagline" data-bind="text: tagline"></div>
+	        <div class="studio" data-bind="text: studio"></div>
+	        <div class="country" data-bind="text: country"></div>
+	        <div class="runtime">
+	        	<span data-bind="visible: resume.position > 0"><span data-bind="hhmm: resume.position"></span> / </span>
+	        	<span data-bind="hhmm: runtime"></span> 
+	        	<i class="icon-play" data-bind="visible: resume.position > 0, attr: {title: resume.position + '/' + resume.total}"></i>
+	        </div>
+	        <div class="playcount" data-bind="text: 'Played '+playcount+' times'"></div>
+	        <div class="buttons">
+	        	<div class="btn-group">
+		        	<a class="btn btn-warning" target="_blank" data-bind="attr: {href: $parent.imdbUrl(imdbnumber)}" href="">IMDB</a>
+		        	<a class="btn btn-info" data-bind="click: $parent.showMovieInfo"><i class="icon-info-sign"></i> Info</a>
+		        	<a class="btn btn-inverse" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>
+		        	<a class="btn btn-primary" data-bind="visible: resume.position > 0">Resume <i class="icon-play-circle"></i></a>
+		        	<a class="btn btn-success" data-bind="click: $parent.play" href="#">Play <i class="icon-play"></i></a>
+		        </div>
+	        </div>
+        </li>
+    </ul>
+    <div class="alert alert-success">
+        Movie information is cached after the first load. If you need to refresh movies please go to <a href="#/config">the config page</a> and empty the cache. 
+    </div>
+</section>

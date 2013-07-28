@@ -1,0 +1,375 @@
+@dark-gray: #444;
+@darkish-gray: #555;
+@light-gray: #aaa;
+@very-light-gray: #e0e0e0;
+@gray: #999;
+@white: #fff;
+@standard-text-color: @dark-gray;
+@thumbnail-size: 90px;
+@dim-text: @darkish-gray;
+@header-text-color: @white;
+
+@info-color: rgb(91, 192, 222);
+@play-color: rgb(92, 184, 92);
+@imdb-color: rgb(238, 162, 54);;
+
+.paragraph-text-font() {
+	font-family: 'Oxygen', sans-serif;
+}
+.control-text-font() {
+	font-family: sans-serif;
+}
+.item-list() {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.tile-list-item(@width, @height) {
+	position: relative;
+	display: inline;
+	padding: 0;
+	float: left;
+	width: @width;
+	height: @height;
+	overflow: hidden;
+}
+.visible() {
+	visibility: visible;
+}
+.invisible() {
+	visibility: hidden;
+}
+
+body {
+	color: @standard-text-color;
+	.paragraph-text-font;
+}
+.btn {
+	.control-text-font;
+}
+
+.splash {
+	text-align: center;
+	margin: 10% 0 0 0;
+	.message {
+		font-size: 5em;
+		line-height: 1.5em;
+		-webkit-text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+		text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+		text-transform: uppercase;
+	}
+	.icon-spinner {
+		text-align: center;
+		display: inline-block;
+		font-size: 5em;
+		margin-top: 50px;
+	}
+}
+
+.page-host {
+	position: relative;
+	top: 40px;
+}
+
+.navbar-fixed-top {
+	.navbar-inner {
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.icon-home {
+		font-size: 18px
+	}
+}
+
+#routerLoader {
+	margin: 10px 8px 4px 8px;
+	.invisible;
+	color: @header-text-color;
+}
+#routerLoader.active {
+	.visible;
+}
+
+.loader {
+	background-image: url('images/loader/loader-128.gif');
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 128px;
+}
+.loader.loader-inline {
+	display: inline-block;
+	width: 128px;
+}
+.loader-128 {
+	background-image: url('images/loader/loader-128.gif');
+	height: 128px;
+}
+.loader-128.loader-inline {
+	width: 128px;
+}
+.loader-64 {
+	background-image: url('images/loader/loader-64.gif');
+	height: 64px;
+}
+.loader-64.loader-inline {
+	width: 64px;
+}
+.loader-32 {
+	background-image: url('images/loader/loader-32.gif');
+	height: 32px;
+}
+.loader-32.loader-left {
+	width: 32px;
+}
+.loader-16 {
+	background-image: url('images/loader/loader-16.gif');
+	height: 16px;
+}
+.loader-16.loader-inline {
+	width: 16px;
+}
+
+.movies, .tvshows, .seasons, .artists, .episodes, .albums {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.movies, .tvshows, .episodes, .albums {
+	li {
+		position: relative;
+		//background-color: #fafafa;
+		padding: 10px 10px 10px 100px;
+		height: 140px;
+		border-top: 1px dotted @very-light-gray;
+		h4 {
+			font-size: 2em;
+			margin: 3px 0 5px 0;
+		}
+		.thumbnail {
+			height: 110px;
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+		.buttons {
+			position: absolute;
+			right: 10px;
+			top: 70px;
+			margin: 10px 0;
+		}
+		.year, .firstaired {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			font-size: 2em;
+			font-weight: bold;
+			color: #aaa;
+		}
+		.studio {
+			position: absolute;
+			right: 10px;
+			top: 40px;
+			font-size: 0.9m;
+			color: #999;
+		}
+		.rating {
+			position: absolute;
+			left: 10px;
+			top: 75px;
+			font-size: 2em;
+			width: 80px;
+			text-align: center;
+			font-weight: bold;
+			color: #fff;
+			text-shadow: 0px 0px 3px #000;
+		}
+		.country {
+			position: absolute;
+			right: 10px;
+			top: 50px;
+			font-size: 0.8em;
+			color: #ccc;
+		}
+		.runtime {
+			color: #aaa;
+			font-size: 1.5em;
+		}
+	}
+	li.altrow {
+		//background-color: #f0f0f0;
+		//border-bottom: 0px;
+	}
+}
+.tvshows {
+	padding: 0;
+	li {
+		.premiered {
+			position: absolute;
+			top: 95px;
+			color: #aaa;
+			font-size: 1.1em;
+		}
+	}
+}
+.episodes {
+	li {
+		height: 110px;
+		padding: 10px 10px 10px 210px;
+		.thumbnail {
+			height: 100px;
+		}
+		.plot {
+			font-size: 0.9em;
+			line-height: 1em;
+			margin: 10px 0;
+			font-style: italic;
+		}
+		.rating {
+			left: 10px;
+			top: 85px;
+			width: 70px;
+		}
+		.runtime {
+			position: absolute;
+			top: 95px;
+		}
+	}
+}
+.albums {
+	li {
+		padding-left: 120px;
+		.rating {
+			width: 100px;
+		}
+	}
+}
+.seasons {
+	ul {
+		.item-list;
+	}
+	li {
+		text-align: center;
+		.tile-list-item(150px,260px);
+		h4 {
+			font-size: 1em;
+			margin: 200px 0 0 0;
+		}
+		.thumbnail {
+			height: (@thumbnail-size * 2);
+			position: absolute;
+			left: 10px;
+			top: 10px;
+		}
+		.watched {
+			.invisible;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			font-size: 2em;
+			font-weight: bold;
+			color: #aaa;
+		}
+	}
+}
+
+.artist {
+	.thumbnail {
+		height: 150px;
+		margin-right: 10px;
+	}
+	h3 {
+		margin-top: 20px;
+		clear: both;
+	}
+}
+
+.artists {
+	ul {
+		.item-list;
+		text-align: center;
+	}
+	li {
+		.tile-list-item(200px,140px);
+		h4 {
+			position: absolute;
+			top: 95px;
+			left: 0px;
+			font-size: 1em;
+		}
+		.artist {
+		}
+		.thumbnail {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: @thumbnail-size;
+			width: @thumbnail-size;
+		}
+		.genre {
+			position: absolute;
+			left: 105px;
+			top: 0;
+			width: 90px;
+			font-style: italic;
+		}
+	}
+}
+
+#routerContent {
+	padding-bottom: 50px;
+}
+
+// CUSTOM BUTTON STYLES
+
+.clear-button-style-ex(@text-color: #444, @hover-color: #444, @hover-text-color: #fff) {
+	color: @text-color;
+	background-color: #fff;
+	border-color: #e5e5e5;
+	&:hover, &:active {
+		color: @hover-text-color;
+		background-color: @hover-color;
+		border-color: @hover-color;
+	};
+}
+.clear-button-style(@color: #444) {
+	.clear-button-style-ex(@color, @color);
+}
+
+.btn-clear {
+	.clear-button-style;
+}
+.btn-clear-purple {
+	color: #563d7c;
+}
+.btn-clear-purple:hover,
+.btn-clear-purple:active {
+	background-color: #563d7c;
+	border-color: #563d7c;
+}
+.btn-refresh {
+	.clear-button-style;
+}
+.btn-play {
+	.clear-button-style-ex(@standard-text-color, @play-color);
+	//.clear-button-style(@play-color);
+}
+.btn-queue {
+	.clear-button-style-ex;
+}
+.btn-showinfo {
+	.clear-button-style-ex(@standard-text-color, @info-color);
+}
+.btn-imdb {
+	.clear-button-style-ex(@standard-text-color, @imdb-color);
+}
+
+@media (max-width: 979px) {
+	.page-host {
+		top: 0;
+	}
+
+	.navbar-fixed-top {
+		margin-bottom: 0;
+	}
+}

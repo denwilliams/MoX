@@ -1,0 +1,16 @@
+<div class="navbar navbar-fixed-bottom" data-bind="visible: isActive">
+  <div class="container">
+  	<!--<a class="navbar-brand" href="#"><i class="icon-play"></i></a>-->
+  	<ul class="nav navbar-nav">
+  		<li><a href="#"><i class="icon-play"></i> [<span data-bind="text: time"></span> / <span data-bind="text: duration"></span>] <span data-bind="text: title"></span> - <span data-bind="text: subtitle"></span></a></li>
+  	</ul>
+
+
+    <!--<a class="navbar-brand" href="#/nowplaying"><i class="icon-play"></i> [<span data-bind="text: time"></span> / <span data-bind="text: duration"></span>] <span data-bind="text: title"></span> - <span data-bind="text: subtitle"></span> </a>
+
+    <div class="pull-right">
+      <a href="#" class="brand pull-right" data-bind="click: showVolume"><i data-bind="css: {'icon-volume-off':volume() == 0 || muted(), 'icon-volume-down': volume() > 0 && volume() < 100, 'icon-volume-up': volume() == 100}"></i></a>
+    </div>-->
+  	<a class="navbar-brand pull-right" href="#"><i class="icon-volume-down"></i></a>
+  </div>
+</div>

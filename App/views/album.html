@@ -1,0 +1,33 @@
+<section>
+    <h2 data-bind="text:albumName"></h2>
+    <div class="buttons pull-right btn-group">
+        <a href="#/music" class="btn"><i class="icon-group"></i> Artist List</a>
+    	<!--ko foreach: artists -->
+	    	<a class="btn" href="#" data-bind="attr: {href: $parent.artistUrl(artistid)}">
+                <i class="icon-user"></i>
+                <span data-bind="text: artist"></span>
+            </a>
+	    <!--/ko -->
+	    <a class="btn btn-success" href="#" data-bind="click: playAlbum">
+            Play Album
+            <i class="icon-play"></i>
+        </a>
+	</div>
+    <blockquote data-bind="">Album something???</blockquote>
+    <h3>Songs</h3>
+    <div class="loader loader-64 loader-inline" data-bind="visible: !loadedSongs()"></div>
+    <ul data-bind="foreach: songs, visible: loadedSongs">
+        <li data-bind="css: { altrow: $index()%2 }">
+            <a class="btn btn-mini" data-bind="attr: {href: songid}"><i class="icon-play"></i></a>
+            --
+            <span class="disc" data-bind="html: disc"></span>/<span class="track" data-bind="html: track"></span>
+            --
+            <span class="title" data-bind="html: label"></span>
+            (<span class="artist" data-bind="html: displayartist"></span>)
+            [<span class="duration" data-bind="hhmmss: duration"></span>]
+            <span class="genre" data-bind="html: genre"></span>
+        </li>
+        <!--<li data-bind="json: $data"></li>-->
+    </ul>
+
+</section>

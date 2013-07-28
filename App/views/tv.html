@@ -1,0 +1,30 @@
+<section>
+	<h2 data-bind="html:displayName"></h2>
+	<div class="buttons pull-right">
+		<a href="#" class="btn btn-refresh"><i class="icon-refresh"></i> Refresh</a>
+	</div>
+
+	<blockquote data-bind="html: description"></blockquote>
+	<h3>Shows</h3>
+	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
+	<ul class="tvshows" data-bind="foreach: shows">
+		<li data-bind="css: { altrow: $index()%2 }">
+			<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
+			<a data-bind="attr: {href: $parent.showUrl(tvshowid)}">
+				<h4 data-bind="text: label"></h4>
+			</a>
+			<div class="year" data-bind="text: year"></div>
+			<div class="genre" data-bind="text: genre"></div>
+			<div class="rating" data-bind="numericText: rating, precision: 1"></div>
+			<div class="studio" data-bind="text: studio"></div>
+			<div class="premiered" data-bind="text: premiered"></div>
+			
+			<div class="buttons btn-group">
+				<a class="btn btn-imdb" target="_blank" data-bind="attr: {href: $parent.imdbUrl(imdbnumber)}" href="">IMDB</a>
+				<a class="btn btn-showinfo">Info &amp; Seasons</a>
+				<a class="btn btn-play" data-bind="" href="#">Play All <i class="icon-play"></i></a>
+			</div>
+
+		</li>
+	</ul>
+</section>

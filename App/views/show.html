@@ -1,0 +1,22 @@
+<section>
+	<h2 data-bind="text:displayName"></h2>
+	<div class="buttons pull-right">
+		<a class="btn" href="#/tv"><i class="icon-desktop"></i> Back to TV Shows</a>
+	</div>
+	<!--<blockquote data-bind="text:description"></blockquote>-->
+	<h3>Seasons</h3>
+	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
+	<ul class="seasons" data-bind="foreach: seasons, visible: loaded">
+		<li data-bind="css: { altrow: $index()%2 }">
+			<a data-bind="attr: {href: $parent.seasonUrl(season)}">
+				<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
+				<h4 data-bind="text: label"></h4>
+				<div class="watched" data-bind="text: watchedepisodes"></div>
+			</a>
+			<div class="buttons">
+				<a class="btn btn-success" data-bind="" href="#">Play Season <i class="icon-play"></i></a>
+			</div>
+		</li>
+	</ul>
+
+</section>
