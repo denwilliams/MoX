@@ -1,10 +1,17 @@
 <section>
 	<h2 data-bind="html:displayName"></h2>
 	<div class="buttons pull-right">
+		<div class="btn-group">
+			<a href="#" class="btn btn-std" data-bind="click: sortBy.name"><i class="icon-sort"></i> Name</a>
+			<a href="#" class="btn btn-std" data-bind="click: sortBy.year">Year</a>
+			<a href="#" class="btn btn-std" data-bind="click: sortBy.studio">Studio</a>
+			<a href="#" class="btn btn-std" data-bind="click: sortBy.rating">Rating <i class="icon-sort"></i></a>
+		</div>
 		<a href="#" class="btn btn-refresh"><i class="icon-refresh"></i> Refresh</a>
 	</div>
 
 	<blockquote data-bind="html: description"></blockquote>
+    <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Shows..."></form>
 	<h3>Shows</h3>
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
 	<ul class="tvshows" data-bind="foreach: shows">
@@ -20,9 +27,8 @@
 			<div class="premiered" data-bind="text: premiered"></div>
 			
 			<div class="buttons btn-group">
-				<a class="btn btn-imdb" target="_blank" data-bind="attr: {href: $parent.imdbUrl(imdbnumber)}" href="">IMDB</a>
+				<a class="btn btn-imdb" target="_blank" data-bind="attr: {href: $parent.tvdbUrl(imdbnumber)}" href="">TVDB</a>
 				<a class="btn btn-showinfo">Info &amp; Seasons</a>
-				<a class="btn btn-play" data-bind="" href="#">Play All <i class="icon-play"></i></a>
 			</div>
 
 		</li>

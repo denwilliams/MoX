@@ -1,175 +1,5 @@
 window.Xbmc = window.Xbmc || {};
 
-Xbmc.Properties = {
-	artist: [
-		//"instrument", 
-		//"style", 
-		//"mood", 
-		"born", 
-		"formed", 
-		"description", 
-		"genre", 
-		"died", 
-		"disbanded", 
-		"yearsactive", 
-		//"musicbrainzartistid", 
-		//"fanart", 
-		"thumbnail"
-	], album: [
-		//"title", 
-		//"description", 
-		"artist", 
-		"genre", 
-		//"theme", 
-		//"mood", 
-		//"style", 
-		//"type", 
-		"albumlabel", // music label
-		"rating", 
-		"year", 
-		//"musicbrainzalbumid", 
-		//"musicbrainzalbumartistid", 
-		//"fanart", 
-		"thumbnail", 
-		"playcount", 
-		"genreid", //increases response time
-		"artistid", //increases response time
-		"displayartist"
-	], song: [
-		//"title", 
-		//"artist", 
-		//"albumartist", 
-		"genre", 
-		//"year", 
-		"rating", 
-		//"album", 
-		"track", 
-		"duration", 
-		//"comment", 
-		//"lyrics", 
-		//"musicbrainztrackid", 
-		//"musicbrainzartistid", 
-		//"musicbrainzalbumid", 
-		//"musicbrainzalbumartistid", 
-		"playcount", 
-		//"fanart", 
-		//"thumbnail", 
-		//"file", 
-		//"albumid", 
-		"lastplayed", 
-		"disc", 
-		//"genreid", //increases response time
-		//"artistid", //increases response time
-		"displayartist"//, 
-		//"albumartistid" //increases response time
-	], tvshow: [
-		//"title", 
-		"genre", 
-		"year", 
-		"rating", 
-		"plot", 
-		"studio", 
-		//"mpaa", 
-		//"cast", //increases response time
-		"playcount", 
-		//"episode", 
-		"imdbnumber", 
-		"premiered", 
-		//"votes", 
-		//"lastplayed", 
-		//"fanart", 
-		"thumbnail", 
-		//"file", 
-		//"originaltitle", 
-		"sorttitle", 
-		//"episodeguide", 
-		//"season", 
-		//"watchedepisodes", 
-		//"dateadded", 
-		//"tag", 
-		//"art"
-	], season: [
-		"season", 
-		//"showtitle", 
-		//"playcount", 
-		//"episode", 
-		//"fanart", 
-		"thumbnail", 
-		//"tvshowid", 
-		"watchedepisodes", 
-		//"art"
-	], episode: [
-		//"title", 
-		"plot", 
-		//"votes", 
-		"rating", 
-		"writer", 
-		"firstaired", 
-		"playcount", 
-		"runtime", 
-		"director", 
-		"productioncode", 
-		"season", 
-		"episode", 
-		//"originaltitle", 
-		//"showtitle", 
-		//"cast", 
-		"streamdetails", 
-		//"lastplayed", 
-		//"fanart", 
-		"thumbnail", 
-		//"file", 
-		"resume", 
-		//"tvshowid", 
-		//"dateadded", 
-		//"uniqueid", 
-		//"art"
-	], movie: [
-		//"title", 
-		"genre", 
-		"year", 
-		"rating", 
-		"director", 
-		//"trailer", 
-		"tagline", 
-		//"plot", 
-		"plotoutline", 
-		//"originaltitle", 
-		//"lastplayed", 
-		"playcount", 
-		"writer", 
-		"studio", 
-		//"mpaa", 
-		//"cast", // slows down load time
-		"country", 
-		"imdbnumber", 
-		"runtime", 
-		//"set", 
-		//"showlink", // slows down load time
-		"streamdetails", 
-		//"top250", 
-		//"votes", 
-		//"fanart", 
-		"thumbnail", 
-		//"file", 
-		"sorttitle", 
-		"resume"//, 
-		//"setid", 
-		//"dateadded", 
-		//"tag", // slows down load time
-		//"art"
-	], movieset: [
-		"title", 
-		"playcount", 
-		//"fanart", 
-		"thumbnail", 
-		//"art"
-	], genre: [
-		"title", 
-		"thumbnail"
-	]
-};
-
 Xbmc.Controller = function(options) {
 	var self = this;
 	
@@ -197,6 +27,7 @@ Xbmc.Controller = function(options) {
 	function _init() {
 		if (typeof Xbmc.CachedQueryController !== 'function') {
 			console.error('Xbmc.CachedQueryController required');
+			_onFailedInit();
 			return;
 		}
 		if (Xbmc.WebSocketsApi.isAvailable()) {
@@ -217,7 +48,8 @@ Xbmc.Controller = function(options) {
 							function() {
 								_onInit();
 							}, function() {
-								console.error('Xbmc.HttpApi failed');
+								_onFailedInit();
+								//console.error('Xbmc.HttpApi failed');
 							}
 						);
 					}
@@ -228,7 +60,8 @@ Xbmc.Controller = function(options) {
 				function() {
 					_onInit();
 				}, function() {
-					console.error('Xbmc.HttpApi failed');
+					_onFailedInit();
+					//console.error('Xbmc.HttpApi failed');
 				}
 			);
 		}
@@ -254,6 +87,13 @@ Xbmc.Controller = function(options) {
 			_settings.onInit();	
 			_settings.onOnline();
 		});
+	}
+
+	/**
+	 * Event handler for failed XBMC initialisation
+	 */
+	function _onFailedInit() {
+		_settings.onFail();
 	}
 
 	function _tryWebSockets(onSuccess, onError) {
@@ -451,8 +291,23 @@ Xbmc.Controller = function(options) {
 			//limits: {start: 0, end: 5},
 			sort: {order: 'ascending', ignorearticle: true, method: 'artist'},
 			//filter: {label:'paul'},
-			properties: Xbmc.Properties.artist
+			properties: Xbmc.Properties.artistPartial
 		}, callback, undefined, 'perm', forceRefresh);
+	};
+	
+	/**
+	 * Gets the specified artist details in XBMC. 
+	 * Artists will be returned from session cache. 
+	 * If you wish to retrieve a fresh list, specify the forceRefresh param.
+	 * @param {number} artistId - The ID of the artist
+	 * @param {function} callback - Function to call on completion
+	 * @param {boolean} [forceRefresh=false] - Refresh the cached set
+	 */
+	this.getArtist = function(artistId, callback, forceRefresh) {
+		self.AudioLibrary.GetArtistDetails({
+			artistid: artistId,
+			properties: Xbmc.Properties.artistFull
+		}, callback, undefined, 'sess', forceRefresh);
 	};
 	
 	/**
@@ -464,9 +319,23 @@ Xbmc.Controller = function(options) {
 	this.getAlbumsByArtist = function(artistId, callback, forceRefresh) {
 		self.AudioLibrary.GetAlbums({
 			filter:{artistid: artistId},
-			properties: Xbmc.Properties.album
+			properties: Xbmc.Properties.albumPartial
 		}, callback, undefined, 'sess', forceRefresh);
 	};
+
+	/**
+	 * Gets album details for the specified album.
+	 * @param {number} albumId - The album to get the details for
+	 * @param {function} callback - The callback function to use when complete
+	 * @param {boolean} forceRefresh - Refresh the cached set
+	 */
+	this.getAlbum = function(albumId, callback, forceRefresh) {
+		self.AudioLibrary.GetAlbumDetails({
+			albumid: albumId,
+			properties: Xbmc.Properties.albumFull
+		}, callback, undefined, 'sess', forceRefresh);
+	};
+
 	/**
 	 * Gets a list of tracks/songs within the specified album.
 	 * @param {number} albumId - The album to get the tracks for
@@ -477,7 +346,7 @@ Xbmc.Controller = function(options) {
 		self.AudioLibrary.GetSongs({
 			filter:{albumid: albumId},
 			sort:{method: 'track'},
-			properties: Xbmc.Properties.song
+			properties: Xbmc.Properties.songPartial
 		}, callback, undefined, 'sess', forceRefresh);
 	};
 	
@@ -485,14 +354,14 @@ Xbmc.Controller = function(options) {
 	
 	this.getMovies = function(callback, forceRefresh) {
 		self.VideoLibrary.GetMovies({
-			properties: Xbmc.Properties.movie, 
+			properties: Xbmc.Properties.moviePartial, 
 			sort:{method: 'title', ignorearticle: true}
 		}, callback, undefined, 'perm', forceRefresh);
 	};
 	
 	this.getMovie = function(movieid, callback, forceRefresh) {
 		self.VideoLibrary.GetMovieDetails(
-			{movieid:movieid, properties: Xbmc.Properties.movie}, 
+			{movieid:movieid, properties: Xbmc.Properties.movieFull}, 
 			callback, undefined, 'sess', forceRefresh
 		);
 	};
@@ -507,14 +376,21 @@ Xbmc.Controller = function(options) {
 
 	this.getTvShows = function(callback, forceRefresh) {
 		self.VideoLibrary.GetTVShows(
-			{properties: Xbmc.Properties.tvshow}
+			{properties: Xbmc.Properties.tvshowPartial}
 			, callback, undefined, 'perm', forceRefresh);
+	}
+
+	this.getTvShow = function(tvshowId, callback, forceRefresh) {
+		self.VideoLibrary.GetTVShowDetails({
+			tvshowid: tvshowId,
+			properties: Xbmc.Properties.tvshowFull
+		}, callback, undefined, 'sess', forceRefresh);
 	}
 	
 	this.getTvSeasons = function(tvshowid, callback, forceRefresh) {
 		self.VideoLibrary.GetSeasons({
 			tvshowid: tvshowid,
-			properties: Xbmc.Properties.season
+			properties: Xbmc.Properties.seasonPartial
 		}, callback, undefined, 'sess', forceRefresh);
 	}
 			
@@ -522,7 +398,7 @@ Xbmc.Controller = function(options) {
 		self.VideoLibrary.GetEpisodes({
 			tvshowid:tvshowid,
 			season:season,
-			properties: Xbmc.Properties.episode
+			properties: Xbmc.Properties.episodePartial
 		}, callback, undefined, 'sess', forceRefresh);
 	}
 			
@@ -729,6 +605,12 @@ function Playlist(id, type, xbmcController) {
 			item : { file: fileName }
 		},null,false);
 	};
+	this.addDirectory = function(directory) {
+		_xbmc.Playlist.Add({
+			playlistid: id,
+			item : { directory: directory }
+		},null,false);
+	};
 	this.getItems = function(callback) {
 		_xbmc.Playlist.GetItems({playlistid: id}, function(response) {
 			self.items = response.items;
@@ -740,10 +622,28 @@ function Playlist(id, type, xbmcController) {
 	};
 	
 	if (type == 'audio') {
+		this.addArtist = function(artistid) {
+			_xbmc.Playlist.Add({
+				playlistid: id,
+				item : { artistid: artistid }
+			},null,false);
+		}
 		this.addAlbum = function(almbumid) {
 			_xbmc.Playlist.Add({
 				playlistid: id,
 				item : { albumid: almbumid }
+			},null,false);
+		}
+		this.addSong = function(songid) {
+			_xbmc.Playlist.Add({
+				playlistid: id,
+				item : { songid: songid }
+			},null,false);
+		}
+		this.addGenre = function(genreid) {
+			_xbmc.Playlist.Add({
+				playlistid: id,
+				item : { genreid: genreid }
 			},null,false);
 		}
 	} else if (type == 'video') {
@@ -791,9 +691,24 @@ function Player(id, type, xbmcController, playlist) {
 		this.album = '';
 		this.genre = '';
 
+		this.playArtist = function(artistid) {
+			self.playlist.clear();
+			self.playlist.addArtist(artistid);
+			self.playPlaylist();
+		};
 		this.playAlbum = function(almbumid) {
 			self.playlist.clear();
 			self.playlist.addAlbum(almbumid);
+			self.playPlaylist();
+		};
+		this.playSong = function(songid) {
+			self.playlist.clear();
+			self.playlist.addSong(songid);
+			self.playPlaylist();
+		};
+		this.playGenre = function(genreid) {
+			self.playlist.clear();
+			self.playlist.addGenre(genreid);
 			self.playPlaylist();
 		};
 	} else if (type == 'video') {

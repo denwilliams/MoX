@@ -11,7 +11,8 @@
 
 @info-color: rgb(91, 192, 222);
 @play-color: rgb(92, 184, 92);
-@imdb-color: rgb(238, 162, 54);;
+@imdb-color: rgb(238, 162, 54);
+@resume-color: rgb(66, 139, 202);
 
 .paragraph-text-font() {
 	font-family: 'Oxygen', sans-serif;
@@ -187,7 +188,7 @@ body {
 		.country {
 			position: absolute;
 			right: 10px;
-			top: 50px;
+			top: 55px;
 			font-size: 0.8em;
 			color: #ccc;
 		}
@@ -250,16 +251,16 @@ body {
 	}
 	li {
 		text-align: center;
-		.tile-list-item(150px,260px);
+		.tile-list-item(150px,300px);
 		h4 {
 			font-size: 1em;
-			margin: 200px 0 0 0;
+			//margin: 200px 0 0 0;
 		}
 		.thumbnail {
 			height: (@thumbnail-size * 2);
 			position: absolute;
 			left: 10px;
-			top: 10px;
+			top: 30px;//10px;
 		}
 		.watched {
 			.invisible;
@@ -269,6 +270,12 @@ body {
 			font-size: 2em;
 			font-weight: bold;
 			color: #aaa;
+		}
+		.buttons {
+			margin: 190px 0 0 0;
+		}
+		.btn {
+			width: 128px;
 		}
 	}
 }
@@ -336,16 +343,8 @@ body {
 	.clear-button-style-ex(@color, @color);
 }
 
-.btn-clear {
+.btn-std {
 	.clear-button-style;
-}
-.btn-clear-purple {
-	color: #563d7c;
-}
-.btn-clear-purple:hover,
-.btn-clear-purple:active {
-	background-color: #563d7c;
-	border-color: #563d7c;
 }
 .btn-refresh {
 	.clear-button-style;
@@ -353,6 +352,9 @@ body {
 .btn-play {
 	.clear-button-style-ex(@standard-text-color, @play-color);
 	//.clear-button-style(@play-color);
+}
+.btn-resume {
+	.clear-button-style-ex(@standard-text-color, @resume-color);
 }
 .btn-queue {
 	.clear-button-style-ex;

@@ -16,7 +16,8 @@ function(
     var artistId = ko.observable(0),
     	artistName = ko.observable('Loading'),
     	description = ko.observable('Loading'),
-    	artistDetails = ko.observable({}),
+    	artistDetails = ko.observable(),
+    	searchTerm = ko.observable(''),
     	albums = ko.observableArray([]),
     	loadedAlbums = ko.observable(false),
     	vm = {
@@ -24,6 +25,7 @@ function(
 		    artistName: artistName,
 		    artist: artistDetails,
 		    description: description,
+		    searchTerm: searchTerm,
 		    albums: albums,
 		    loadedAlbums: loadedAlbums,
 		    viewAttached: viewAttached, 

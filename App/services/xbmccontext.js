@@ -23,6 +23,7 @@ define(
 			}
 			,onFail:function() { 
 				xbmc.ready = false;
+				deferred.reject();
 			}	
 		});
 		return deferred;

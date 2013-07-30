@@ -9,6 +9,7 @@ function(config, xbmc)
 		},
 		albums = {
 			getByArtist: getAlbumsByArtistId,
+			get: getAlbumById,
 		},
 		songs = {
 			getByAlbum: getSongsByAlbum,
@@ -85,16 +86,25 @@ function(config, xbmc)
 		}
 	}
 	
-	function getArtistById(id, callback) {
-		getAllArtists(function(artists) {
-			var artist = jlinq.from(artists).equals('artistid',id).select();
-			callback(artist[0]);
-		});
+	function getArtistById(id, callback, forceRefresh) {
+		// getAllArtists(function(artists) {
+		// 	var artist = jlinq.from(artists).equals('artistid',id).select();
+		// 	callback(artist[0]);
+		// },forceRefresh);
+			xbmc.controller.getArtist(id,function(result) {
+				callback(result.artistdetails);
+			}, forceRefresh);
 	}
 	
 	function getAlbumsByArtistId(artistid, callback, forceRefresh) {
 		xbmc.controller.getAlbumsByArtist(artistid, function(result) {
 			callback(result.albums);
+		}, forceRefresh);
+	}
+	
+	function getAlbumById(id, callback, forceRefresh) {
+		xbmc.controller.getAlbum(id, function(result) {
+			callback(result.albumdetails);
 		}, forceRefresh);
 	}
 	
@@ -118,10 +128,13 @@ function(config, xbmc)
 	}
 
 	function getMovieById(movieid, callback) {
-		getAllMovies(function(movies) {
-			var movie = jlinq.from(movies).equals('movieid',movieid).select();
-			callback(movie[0]);
-		});
+		// getAllMovies(function(movies) {
+		// 	var movie = jlinq.from(movies).equals('movieid',movieid).select();
+		// 	callback(movie[0]);
+		// });
+		xbmc.controller.getMovie(id, function(result) {
+			callback(result.moviedetails);
+		}, forceRefresh);
 	}
 
 	// ################# TV #################

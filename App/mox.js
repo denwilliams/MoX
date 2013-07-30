@@ -1,7 +1,8 @@
 require.config({
 	paths: {
 		'xbmccachedquerycontroller': '../Scripts/xbmc/XbmcCachedQueryController',
-		'xbmccontroller': '../Scripts/xbmc/XbmcController',
+        'xbmcproperties': '../Scripts/xbmc/XbmcProperties',
+        'xbmccontroller': '../Scripts/xbmc/XbmcController',
 		'xbmchttpapi': '../Scripts/xbmc/XbmcHttpApi',
 		'xbmcmodelbindings': '../Scripts/xbmc/XbmcModelBindings',
 		'xbmcwebsocketsapi': '../Scripts/xbmc/XbmcWebSocketsApi',
@@ -12,7 +13,7 @@ require.config({
 	shim: {
 		//'xbmcwebsocketsapi' : { deps: [] },
 		'xbmccachedquerycontroller': { deps: ['xbmccontroller'], exports: 'Xbmc' },
-		'xbmccontroller': { deps: ['xbmcwebsocketsapi'] },
+		'xbmccontroller': { deps: ['xbmcwebsocketsapi', 'xbmcproperties'] },
 	}
 });
 

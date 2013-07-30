@@ -31,6 +31,11 @@ function() {
             moduleId: 'viewmodels/music',
             visible: true,
         },{
+        	url: 'config',
+        	name: 'Configuration',
+        	moduleId: 'viewmodels/config',
+        	visible: false
+        },{
         	url: 'weather',
         	name: 'Weather',
         	moduleId: 'viewmodels/weather',
@@ -83,6 +88,9 @@ function() {
 		forImdb: function(imdbId) {
 			return "http://www.imdb.com/title/"+imdbId+"/"
 		},
+		forTvDb: function(id) {
+			return "http://thetvdb.com/?tab=series&id=" +id;
+		}
 	}, config = {
 		appTitle: 'MoX',
 		rootModule: 'viewmodels/shell',

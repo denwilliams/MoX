@@ -1,10 +1,11 @@
 ﻿<section>
     <h2 data-bind="html:displayName"></h2>
 	<div class="buttons pull-right">
-		<a href="#" class="btn"><i class="icon-refresh"></i> Refresh</a>
+		<a href="#" class="btn btn-refresh"><i class="icon-refresh"></i> Refresh</a>
 	</div>
     <blockquote data-bind="html:description"></blockquote>
-    <h3>Titles</h3>
+    <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Movies..."></form>
+    <h3><span data-bind="text: searchResultsCount"></span> Titles</h3>
     <div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
     <ul class="movies" data-bind="foreach: movies">
         <li data-bind="css: { altrow: $index()%2 }">
@@ -23,15 +24,16 @@
 	        <div class="playcount" data-bind="text: 'Played '+playcount+' times'"></div>
 	        <div class="buttons">
 	        	<div class="btn-group">
-		        	<a class="btn btn-warning" target="_blank" data-bind="attr: {href: $parent.imdbUrl(imdbnumber)}" href="">IMDB</a>
-		        	<a class="btn btn-info" data-bind="click: $parent.showMovieInfo"><i class="icon-info-sign"></i> Info</a>
-		        	<a class="btn btn-inverse" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>
-		        	<a class="btn btn-primary" data-bind="visible: resume.position > 0">Resume <i class="icon-play-circle"></i></a>
-		        	<a class="btn btn-success" data-bind="click: $parent.play" href="#">Play <i class="icon-play"></i></a>
+		        	<a class="btn btn-imdb" target="_blank" data-bind="attr: {href: $parent.imdbUrl(imdbnumber)}" href="">IMDB</a>
+		        	<a class="btn btn-showinfo" data-bind="click: $parent.showMovieInfo"><i class="icon-info-sign"></i> Info</a>
+		        	<a class="btn btn-queue" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>
+		        	<a class="btn btn-resume" data-bind="visible: resume.position > 0">Resume <i class="icon-play-circle"></i></a>
+		        	<a class="btn btn-play" data-bind="click: $parent.play" href="#">Play <i class="icon-play"></i></a>
 		        </div>
 	        </div>
         </li>
     </ul>
+    <div data-bind="scroll: true, scrollOptions: { loadFunc: loadMore, offset: 150 }">Loading...</div>
     <div class="alert alert-success">
         Movie information is cached after the first load. If you need to refresh movies please go to <a href="#/config">the config page</a> and empty the cache. 
     </div>

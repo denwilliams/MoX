@@ -1,7 +1,7 @@
 ﻿<section class="artist">
 	<h2 data-bind="text:artistName"></h2>
 	<div class="btn-group pull-right">
-		<a href="#/music" class="btn btn-clear"><i class="icon-group"></i> Back to Artist List</a>
+		<a href="#/music" class="btn btn-std"><i class="icon-group"></i> Back to Artist List</a>
 		<a href="#" class="btn btn-showinfo" data-bind="click: showArtistInfo"><i class="icon-info-sign"></i> Artist Info</a>
 	</div>
 	<!--ko with: artist -->
@@ -14,6 +14,9 @@
 	<div class="disbanded" data-bind="html: 'Disbanded: '+disbanded, visible: disbanded"></div>
 	<div class="yearsactive" data-bind="html: 'Years Active: '+yearsactive, visible: yearsactive"></div>
 	<!--/ko -->
+
+    <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Artists..."></form>
+
 	<h3>Albums</h3>
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loadedAlbums()"></div>
 	<ul class="albums" data-bind="foreach: albums, visible: loadedAlbums">

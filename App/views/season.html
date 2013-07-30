@@ -2,10 +2,10 @@
 	<h2 data-bind="text:displayName"></h2>
 	<div class="loader loader-32 loader-inline" data-bind="visible: !seasonsLoaded()"></div>
 	<div class="buttons pull-right">
-		<a href="#" class="btn btn-success">Play Season <i class="icon-play"></i></a>
+		<a href="#" class="btn btn-play">Play Season <i class="icon-play"></i></a>
 	</div>
 	<div class="btn-group" data-bind="foreach: seasons, visible: seasonsLoaded">
-		<a class="btn" data-bind="text: label, attr: {href: $parent.seasonUrl(season)}, css: {active: $parent.season() == season}"></a>
+		<a class="btn btn-std" data-bind="text: label, attr: {href: $parent.seasonUrl(season)}, css: {active: $parent.season() == season}"></a>
 	</div>
 
 	<!--<blockquote data-bind="text:description"></blockquote>-->
@@ -28,11 +28,11 @@
 	        </div>
 			<!--<div data-bind="json: streamdetails"></div>-->
 			
-			<div class="buttons">
-	        	<a class="btn btn-info"><i class="icon-info-sign"></i> Info</a>
-	        	<a class="btn btn-inverse" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>
-	        	<a class="btn btn-success" data-bind="" href="#">Play <i class="icon-play"></i></a>
-	        	<a class="btn btn-primary" data-bind="visible: resume.position > 0">Resume <i class="icon-play-circle"></i></a>
+			<div class="buttons btn-group">
+	        	<a class="btn btn-showinfo"><i class="icon-info-sign"></i> Info</a>
+	        	<a class="btn btn-queue" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>
+	        	<a class="btn btn-resume" data-bind="visible: resume.position > 0">Resume <i class="icon-play-circle"></i></a>
+	        	<a class="btn btn-play" data-bind="" href="#">Play <i class="icon-play"></i></a>
 	        </div>
 
 		</li>
