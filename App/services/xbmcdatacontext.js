@@ -10,12 +10,14 @@ function(config, xbmc)
 		albums = {
 			getByArtist: getAlbumsByArtistId,
 			get: getAlbumById,
+			getRecent: getRecentAlbums,
 		},
 		songs = {
 			getByAlbum: getSongsByAlbum,
 		},
 		movies = {
 			getAll: getAllMovies,
+			getRecent: getRecentMovies,
 		},
 		tvShows = {
 			getAll: getAllTvShows,
@@ -25,6 +27,7 @@ function(config, xbmc)
 		},
 		tvEpisodes = {
 			getBySeason: getTvEpisodes,
+			getRecent: getRecentEpisodes,
 		},
 		weather = {
 			get: getWeather
@@ -101,6 +104,12 @@ function(config, xbmc)
 			callback(result.albums);
 		}, forceRefresh);
 	}
+
+	function getRecentAlbums(callback, forceRefresh) {
+		xbmc.controller.getRecentAlbums(function(result) {
+			callback(result.albums, 5);
+		}, forceRefresh);
+	}
 	
 	function getAlbumById(id, callback, forceRefresh) {
 		xbmc.controller.getAlbum(id, function(result) {
@@ -125,6 +134,12 @@ function(config, xbmc)
 				callback(result.movies);
 			}, forceRefresh);
 		}
+	}
+
+	function getRecentMovies(callback, forceRefresh) {
+		xbmc.controller.getRecentMovies(function(result) {
+			callback(result.movies, 5);
+		}, forceRefresh);
 	}
 
 	function getMovieById(movieid, callback) {
@@ -166,6 +181,12 @@ function(config, xbmc)
 	function getTvEpisodes(tvshowid, season, callback, forceRefresh) {
 		xbmc.controller.getTvEpisodes(tvshowid, season, function(result) {
 			callback(result.episodes);
+		}, forceRefresh);
+	}
+
+	function getRecentEpisodes(callback, forceRefresh) {
+		xbmc.controller.getRecentEpisodes(function(result) {
+			callback(result.episodes, 5);
 		}, forceRefresh);
 	}
 

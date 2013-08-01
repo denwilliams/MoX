@@ -323,6 +323,15 @@ Xbmc.Controller = function(options) {
 		}, callback, undefined, 'sess', forceRefresh);
 	};
 
+
+	this.getRecentAlbums = function(callback, limit) {
+		self.AudioLibrary.GetRecentlyAddedAlbums({
+			properties: Xbmc.Properties.albumPartial, 
+			//sort: {method: 'title', ignorearticle: true},
+			limits: {start:0, end: limit || 25},
+		}, callback, undefined, 'none', false);
+	};
+
 	/**
 	 * Gets album details for the specified album.
 	 * @param {number} albumId - The album to get the details for
@@ -365,6 +374,14 @@ Xbmc.Controller = function(options) {
 			callback, undefined, 'sess', forceRefresh
 		);
 	};
+
+	this.getRecentMovies = function(callback, limit) {
+		self.VideoLibrary.GetRecentlyAddedMovies({
+			properties: Xbmc.Properties.moviePartial, 
+			//sort: {method: 'title', ignorearticle: true},
+			limits: {start:0, end: limit || 25},
+		}, callback, undefined, 'none', false);
+	};
 	
 	this.playMovie = function(movieid) {
 		self.playlist.clear();
@@ -401,6 +418,14 @@ Xbmc.Controller = function(options) {
 			properties: Xbmc.Properties.episodePartial
 		}, callback, undefined, 'sess', forceRefresh);
 	}
+
+	this.getRecentEpisodes = function(callback, limit) {
+		self.VideoLibrary.GetRecentlyAddedEpisodes({
+			properties: Xbmc.Properties.episodePartial, 
+			//sort: {method: 'title', ignorearticle: true},
+			limits: {start:0, end: limit || 25},
+		}, callback, undefined, 'none', false);
+	};
 			
 	/* (((( PLAYLISTS )))) */
 	

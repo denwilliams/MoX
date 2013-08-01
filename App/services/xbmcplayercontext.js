@@ -4,6 +4,7 @@ function(xbmc)
 {
 	var player = {
 		playMovie: playMovie,
+		playEpisode: playEpisode,
 		playAlbum: playAlbum,
 	};
 
@@ -16,5 +17,8 @@ function(xbmc)
 	}
 	function playAlbum(albumId) {
 		xbmc.controller.players.audio.playAlbum(albumId);
+	}
+	function playEpisode(episodeId) {
+		xbmc.controller.players.video.playEpisode(episodeId);
 	}
 });
