@@ -1,6 +1,10 @@
 define(
-['config','services/xbmcdatacontext'],
-function(config, xbmc){
+[
+	'config',
+	'durandal/plugins/router',
+	'services/xbmcdatacontext'
+],
+function(config, router, xbmc){
 	var vm = {
 		displayName: 'Configuration',
 		description: 'Configure MoX',
@@ -18,5 +22,6 @@ function(config, xbmc){
 	function saveSettings() {
 		config.setHost(vm.host());
 		config.setPort(vm.port());
+		window.location = 'index.html';
 	}
 });

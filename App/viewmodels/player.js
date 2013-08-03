@@ -19,12 +19,15 @@ function(xbmcDataContext, xbmcEventContext) {
 			title: 'Title',
 			subtitle: 'Subtitle',
 			activate: activate,
+			viewAttached: viewAttached,
 		};
 		
 	return vm;
 	
+	function viewAttached(view) {
+		volume(60);
+	}
 	
 	function activate() {
-		
 	}
 });

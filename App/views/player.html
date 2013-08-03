@@ -11,6 +11,9 @@
     <div class="pull-right">
       <a href="#" class="brand pull-right" data-bind="click: showVolume"><i data-bind="css: {'icon-volume-off':volume() == 0 || muted(), 'icon-volume-down': volume() > 0 && volume() < 100, 'icon-volume-up': volume() == 100}"></i></a>
     </div>-->
-  	<a class="navbar-brand pull-right" href="#"><i class="icon-volume-down"></i></a>
+    <div class="pull-right">
+      <input type="text" data-bind="slider: volume, sliderOptions: {step: 1, snap: true, range: [0,100], theme: 'volume'}, sliderOptions2: {range: '0,100'}">
+      <a class="navbar-brand" data-bind="clickToggle: muted" href="#"><i data-bind="style: {color: muted() ? 'red' : 'black'}" class="icon-volume-down"></i></a>
+    </div>
   </div>
 </div>

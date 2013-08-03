@@ -1,6 +1,30 @@
 (function(ko, $) {
 	if (typeof ko == 'undefined' || typeof $ == 'undefined')
 		return;
+
+	// ###################
+	// #### COMPUTEDS ####
+	// ###################
+	
+	/**
+	 * Returns a computed variant of the array, where propertyName of each item
+	 * matches the text from observableFilterInput
+	 */
+	ko.filteredArray = function(observableArray, observableFilterInput, propertyName) {
+        return ko.computed(function() {
+            var filter = ko.utils.unwrapObservable(observableFilterInput).toLowerCase();
+            if (!filter) {
+                return observableArray();
+            } else {
+                return ko.utils.arrayFilter(observableArray(), function (item) {
+                    return ko.utils.unwrapObservable(item[propertyName])
+                        .toLowerCase()
+                        .indexOf(filter) >= 0;
+                });
+            }
+        });
+    };
+
 	
 	// ###################
 	// #### FUNCTIONS ####
@@ -182,6 +206,50 @@
 				});
 			}
 		}
+	};
+
+	ko.bindingHandlers.slider = {
+		init: function (element, valueAccessor, allBindingsAccessor) {
+		    var options = allBindingsAccessor().sliderOptions || {};
+		    var value = ko.utils.unwrapObservable(valueAccessor());
+		    var $el = $(element);
+		    $el.val(value);
+		    $el.simpleSlider(options);
+		    $el.simpleSlider("setValue", value);
+		    $el.bind("slider:changed", function (event, data) {
+				// The currently selected value of the slider
+				//alert(data.value);
+		        var observable = valueAccessor();
+		        if (data.value != observable()) {
+			        // have data.value & data.ratio available
+					//alert(data.value);
+			        observable(data.value);
+		        }
+			}).bind("slider:ready", function (event, data) {
+				//alert(data.value);
+			    $el.simpleSlider("setValue", value);
+			});
+
+		    // ko.utils.registerEventHandler(element, "slider:changed", function (event, data) {
+		    //     var observable = valueAccessor();
+		    //     // have data.value & data.ratio available
+		    //     observable(data.value);
+		    // });
+		    //ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
+		    //    $(element).slider("destroy");
+		    //});
+		    //ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+		    //    var observable = valueAccessor();
+		    //    observable(ui.value);
+		    //});
+		  },
+		  update: function (element, valueAccessor) {
+		    var value = ko.utils.unwrapObservable(valueAccessor());
+		    if (isNaN(value)) value = 0;
+		    var $el = $(element);
+		    $el.val(value);
+		    $el.simpleSlider("setValue", value);
+		  }
 	};
 
 	// #####################
