@@ -33,7 +33,7 @@
 	        </div>
         </li>
     </ul>
-    <div data-bind="scroll: true, scrollOptions: { loadFunc: loadMore, offset: 150 }">Loading...</div>
+    <div data-bind="scroll: infiniteScrollEnabled, scrollOptions: { loadFunc: loadMore, offset: 200 }">Loading...</div>
     <div class="alert alert-success">
         Movie information is cached after the first load. If you need to refresh movies please go to <a href="#/config">the config page</a> and empty the cache. 
     </div>

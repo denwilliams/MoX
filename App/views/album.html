@@ -1,14 +1,14 @@
 <section>
     <h2 data-bind="text:albumName"></h2>
     <div class="buttons pull-right btn-group">
-        <a href="#/music" class="btn"><i class="icon-group"></i> Artist List</a>
+        <a href="#/music" class="btn btn-std"><i class="icon-group"></i> Artist List</a>
     	<!--ko foreach: artists -->
-	    	<a class="btn" href="#" data-bind="attr: {href: $parent.artistUrl(artistid)}">
+	    	<a class="btn btn-std" href="#" data-bind="attr: {href: $parent.artistUrl(artistid)}">
                 <i class="icon-user"></i>
                 <span data-bind="text: artist"></span>
             </a>
 	    <!--/ko -->
-	    <a class="btn btn-success" href="#" data-bind="click: playAlbum">
+	    <a class="btn btn-play" href="#" data-bind="click: playAlbum">
             Play Album
             <i class="icon-play"></i>
         </a>

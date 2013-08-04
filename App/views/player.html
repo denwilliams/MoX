@@ -1,8 +1,32 @@
-<div class="navbar navbar-fixed-bottom" data-bind="visible: isActive">
+<div class="navbar navbar-fixed-bottom player">
   <div class="container">
   	<!--<a class="navbar-brand" href="#"><i class="icon-play"></i></a>-->
-  	<ul class="nav navbar-nav">
-  		<li><a href="#"><i class="icon-play"></i> [<span data-bind="text: time"></span> / <span data-bind="text: duration"></span>] <span data-bind="text: title"></span> - <span data-bind="text: subtitle"></span></a></li>
+  	<ul class="nav navbar-nav" data-bind="visible: isActive">
+  		<li class="hideOnHover">
+        <a href="#">
+          [<span data-bind="hhmmss: time"></span>/<span data-bind="hhmmss: duration"></span>] 
+          <i data-bind="css: {'icon-play': playerSpeed() == 1, 'icon-pause': playerSpeed() == 0, 'icon-forward': playerSpeed() > 1, 'icon-backward': playerSpeed() < 0}"></i> 
+          <span data-bind="text: title"></span>
+        </a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:skipBack"><i class="icon-step-backward"></i></a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:rewind"><i class="icon-backward"></i></a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:stop"><i class="icon-stop"></i></a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:playPause"><i data-bind="css: {'icon-play': playerSpeed() !== 1, 'icon-pause': playerSpeed() === 1}"></i></a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:fastForward"><i class="icon-forward"></i></a>
+      </li>
+      <li class="showOnHover">
+        <a href="#" data-bind="click:skipForward"><i class="icon-step-forward"></i></a>
+      </li>
   	</ul>
 
 
@@ -12,8 +36,10 @@
       <a href="#" class="brand pull-right" data-bind="click: showVolume"><i data-bind="css: {'icon-volume-off':volume() == 0 || muted(), 'icon-volume-down': volume() > 0 && volume() < 100, 'icon-volume-up': volume() == 100}"></i></a>
     </div>-->
     <div class="pull-right">
-      <input type="text" data-bind="slider: volume, sliderOptions: {step: 1, snap: true, range: [0,100], theme: 'volume'}, sliderOptions2: {range: '0,100'}">
-      <a class="navbar-brand" data-bind="clickToggle: muted" href="#"><i data-bind="style: {color: muted() ? 'red' : 'black'}" class="icon-volume-down"></i></a>
+      <div class="volume-control showOnHover">
+        <input type="text" data-bind="slider: volume, sliderOptions: {step: 1, snap: true, range: [0,100], theme: 'volume'}, sliderOptions2: {range: '0,100'}">
+      </div>
+      <a class="navbar-brand" data-bind="clickToggle: muted" href="#"><i data-bind="style: {color: muted() ? 'red' : 'black'}, css: {'icon-volume-off': volume() === 0, 'icon-volume-up': volume() === 100, 'icon-volume-down': volume() > 0 && volume() < 100}"></i></a>
     </div>
   </div>
 </div>

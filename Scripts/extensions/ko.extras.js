@@ -108,6 +108,7 @@
 	 */
 	ko.bindingHandlers.hhmmss = {
 		update: function(element, valueAccessor, allBindingsAccessor) {
+			var time;
 			var value = ko.utils.unwrapObservable(valueAccessor());
 			
 			var sec_num = parseInt(value, 10); // don't forget the second parm
@@ -118,8 +119,11 @@
 			if (hours   < 10) {hours   = "0"+hours;}
 			if (minutes < 10) {minutes = "0"+minutes;}
 			if (seconds < 10) {seconds = "0"+seconds;}
-			var time    = hours+':'+minutes+':'+seconds;   
-	
+			if (hours === '00') {
+				time = minutes+':'+seconds;
+			} else {
+				time = hours+':'+minutes+':'+seconds;   
+			}
 			ko.bindingHandlers.text.update(element, function() { return time; });
 		}
 	};
@@ -145,7 +149,6 @@
 			ko.bindingHandlers.text.update(element, function() { return time; });
 		}
 	};
-
 
 	// see http://figg-blog.tumblr.com/post/32733177516/infinite-scrolling-knocked-out
 
@@ -192,6 +195,60 @@
 		}
 	  }
 	}
+
+	ko.bindingHandlers.hidden = {
+		update: function(element, valueAccessor) {
+			var value = ko.utils.unwrapObservable(valueAccessor());
+			ko.bindingHandlers.visible.update(element, function() { return!value; });
+		}
+	};
+
+	ko.bindingHandlers.carouFredSel = {
+		created: false,
+		init: function(element, valueAccessor, allBindingsAccessor, fourthParam) {
+			ko.bindingHandlers.foreach.init(element, valueAccessor, allBindingsAccessor, fourthParam);
+		},
+		update: function(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam) {
+			ko.bindingHandlers.foreach.update(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam);
+			var count = ko.utils.unwrapObservable(valueAccessor()).length;
+			// generate unique id
+			if (count > 0) {
+				var id = guid();
+				//if (!this.created) {
+					var $parent = $(element).parent();
+
+					var $aPrev = $('<a />');
+					$aPrev.attr('id', 'prev'+id).addClass('prev').append('<span>prev</span>');
+					var $aNext = $('<a />');
+					$aNext.attr('id', 'next'+id).addClass('next').append('<span>next</span>');
+					var $divPag = $('<div />');
+					$divPag.attr('id', 'pag'+id).addClass('pagination');
+
+					$parent.append($aPrev);
+					$parent.append($aNext);
+					$parent.append($divPag);
+
+					//this.created = true;
+				//}
+				$(element).carouFredSel({
+					width: '100%', 
+					//responsive: true,
+					//circular: false,
+					//infinite: false,
+					auto 	: false,
+					prev	: {
+						button	: "#prev"+id,
+						key		: "left"
+					},
+					next	: { 
+						button	: "#next"+id,
+						key		: "right"
+					},
+					pagination	: "#pag"+id
+				});
+			}
+		}
+	};
 	
 	/**
 	 * Click Toggle binding to invert boolean values on click event.
@@ -273,4 +330,15 @@
 			ko.utils.unwrapObservable(value) ? $(element).fadeIn() : $(element).fadeOut();
 		}
 	};
+
+	function s4() {
+	  return Math.floor((1 + Math.random()) * 0x10000)
+	             .toString(16)
+	             .substring(1);
+	};
+
+	function guid() {
+	  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+	         s4() + '-' + s4() + s4() + s4();
+	}
 })(ko, $);

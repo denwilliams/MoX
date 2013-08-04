@@ -32,6 +32,12 @@ function (router, app, logger, xbmcContext, config) {
     }
     
     function boot() {
-        return router.activate(config.startModule);	    
+        // we want to delay this by 2 seconds to let other things load
+        setTimeout(function() {
+            // require these viewModels to initiate the API requests
+            require(['viewmodels/music','viewmodels/tv','viewmodels/movies']);
+        }, 2000);
+
+        return router.activate(config.startModule);  
     }
 });

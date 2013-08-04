@@ -4,9 +4,10 @@
     <h3>Recently Added</h3>
 
     <div class="recent">
+        <div>
         <h4>Albums</h4>
         <div class="loader loader-64 loader-inline" data-bind="visible: !albumsLoaded()"></div>
-        <ul class="recentalbums" data-bind="foreach: recent.albums, visible: albumsLoaded">
+        <ul class="recentalbums" data-bind="carouFredSel: recent.albums">
             <li data-bind="css: { altrow: $index()%2 }">
                 <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
                 <a data-bind="text: label, attr: {href: $parent.albumUrl(albumid)}">
@@ -33,9 +34,11 @@
             </li>
             <!--<li data-bind="json: $data"></li>-->
         </ul>
+        </div>
+        <div>
         <h4>Movies</h4>
         <div class="loader loader-64 loader-inline" data-bind="visible: !moviesLoaded()"></div>
-        <ul class="recentmovies" data-bind="foreach: recent.movies">
+        <ul class="recentmovies" data-bind="carouFredSel: recent.movies">
             <li data-bind="css: { altrow: $index()%2 }">
                 <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
                 <h4 data-bind="text: label"></h4>
@@ -61,9 +64,11 @@
                 </div>
             </li>
         </ul>
+        </div>
+        <div>
         <h4>TV Episodes</h4>
-        <div class="loader loader-64 loader-inline" data-bind="visible: !episodesLoaded()"></div>
-        <ul class="recentepisodes" data-bind="foreach: recent.episodes, visible: episodesLoaded">
+        <div class="loader loader-64 loader-inline" data-bind="hidden: episodesLoaded"></div>
+        <ul class="recentepisodes" data-bind="carouFredSel: recent.episodes">
             <li data-bind="css: { altrow: $index()%2 }">
                 <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
                 <a data-bind="attr: {href: ''}">
@@ -88,6 +93,7 @@
 
             </li>
         </ul>
+        </div>
     </div>
 
     <div style="clear:both;"></div>

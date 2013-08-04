@@ -47,17 +47,20 @@ function(config, xbmc, player) {
     return dashboard;
 
     function init() {
-        xbmc.movies.getRecent(function(results) {
-            recentMovies(results);
-            moviesLoaded(true);  
-        });
-        xbmc.tvEpisodes.getRecent(function(results) {
-            recentEpisodes(results);
-            episodesLoaded(true);  
-        });
-        xbmc.albums.getRecent(function(results) {
-            recentAlbums(results);
-            albumsLoaded(true);  
-        });
+        // we want to delay this by a second to let other things load
+        setTimeout(function() {
+            xbmc.movies.getRecent(function(results) {
+                recentMovies(results);
+                moviesLoaded(true);  
+            });
+            xbmc.tvEpisodes.getRecent(function(results) {
+                recentEpisodes(results);
+                episodesLoaded(true);  
+            });
+            xbmc.albums.getRecent(function(results) {
+                recentAlbums(results);
+                albumsLoaded(true);  
+            });
+        }, 1000);
     }
 });

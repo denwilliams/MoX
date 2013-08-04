@@ -1,6 +1,13 @@
 define(
-['config','durandal/app','services/xbmcdatacontext','services/xbmcplayercontext', 'jlinq'],
-function(config,app,xbmc,player)
+[
+	'config',
+	'durandal/app',
+	'services/xbmcdatacontext',
+	'services/xbmcplayercontext',
+	'services/notifier',
+	'jlinq'
+],
+function(config,app,xbmc,player,notify)
 {
     var movies = ko.observableArray([]),
     	loaded = ko.observable(false),
@@ -23,7 +30,7 @@ function(config,app,xbmc,player)
 			return results;
     	}),
     	keepLoading = ko.computed(function() {
-    		return listVisible() && visibleMovies().length >= searchResults().length;
+    		return listVisible() && searchResults().length > visibleMovies().length;
     	}),
     	vm = {
         	displayName: 'MoX - Movies',
@@ -66,6 +73,7 @@ function(config,app,xbmc,player)
 			xbmc.movies.getAll(function(moviesResult) {
 				loaded(true);
 				movies(moviesResult);
+				notify.success('Movie titles have been loaded.');
 			});
 		}, 1000);
 	}

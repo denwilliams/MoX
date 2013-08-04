@@ -1,12 +1,15 @@
 ﻿define(
-['config','services/xbmcdatacontext'],
-function(config,xbmcDataContext) {
+['config','services/xbmcdatacontext', 'services/notifier'],
+function(config,xbmcDataContext, notify) {
 	var artists = ko.observableArray([]),
 		loaded = ko.observable(false),
+		searchTerm = ko.observable(''),
+		filteredArtists = ko.filteredArray(artists, searchTerm, 'label').extend({ throttle: 300 });
 		vm = {
 	        displayName: 'MoX - Music',
 	        description: 'Stuff',
-	        artists: artists,
+	        artists: filteredArtists,
+	        searchTerm: searchTerm,
 	        loaded: loaded,
 	        artistUrl: config.url.forArtist,
 	        imageUrl: config.url.forImage,
@@ -17,6 +20,7 @@ function(config,xbmcDataContext) {
     xbmcDataContext.artists.getAll(function(results) {
     	artists(results);
     	loaded(true);
+		notify.success('Music artists have been loaded.')
     });
 
     function activate() {

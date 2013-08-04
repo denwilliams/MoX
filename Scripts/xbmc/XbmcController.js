@@ -440,15 +440,29 @@ Xbmc.Controller = function(options) {
 	
 	
 	/* (((( PLAYERS )))) */
+
+	function Players(xbmcController, playlists) {
+		var self = this;
+		var _xbmc = xbmcController;
+
+		this.audio = this['0'] = new Player(0, 'audio', _xbmc, playlists.audio);
+		this.video = this['1'] = new Player(1, 'video', _xbmc, playlists.video);
+		this.pictures = this['2'] = new Player(2, 'pictures', _xbmc, playlists.pictures);
+
+		this.getActivePlayers = function(callback) {
+			_xbmc.Player.GetActivePlayers({}, function(items) {
+				var players = [];
+				for (var i = 0; i < items.length; i++) {
+					players.push(self[items[i].playerid]);
+				}
+				if (typeof callback == 'function') {
+					callback(players);
+				}
+			}, false);
+		};
+	}
 	
-	this.players = {
-		0: new Player(0, 'audio', self, this.playlists.audio) 
-		,1: new Player(1, 'video', self, this.playlists.video)  
-		,2: new Player(2, 'pictures', self, this.playlists.pictures)  
-	};
-	this.players.audio = this.players['0'];
-	this.players.video = this.players['1'];
-	this.players.pictures = this.players['2'];
+	this.players = new Players(this, this.playlists);
 	
 	/**
 	 * Mutes or unmutes XBMC
@@ -583,7 +597,7 @@ Xbmc.Controller = function(options) {
 		_api.subscribe('System.OnRestart', function(data) {callback({event: 'restart', data: data})});
 		_api.subscribe('System.OnSleep', function(data) {callback({event: 'sleep', data: data})});
 		_api.subscribe('System.OnWake', function(data) {callback({event: 'wake', data: data})});
-		_api.subscribe('System.OnRestart', function(data) {callback({event: 'restart', data: data})});
+		//_api.subscribe('System.OnRestart', function(data) {callback({event: 'restart', data: data})});
 		
 	}
 
@@ -736,6 +750,12 @@ function Player(id, type, xbmcController, playlist) {
 			self.playlist.addGenre(genreid);
 			self.playPlaylist();
 		};
+		/** Gets a string representation of the currently playing item */
+		this.getCurrentItemName = function(callback) {
+			_xbmc.getLabels(['MusicPlayer.Title', 'MusicPlayer.Artist'], function(response) {
+				callback(response['MusicPlayer.Title'] + ' - ' + response['MusicPlayer.Artist']);
+			});
+		};
 	} else if (type == 'video') {
 		this.studio = '';
 		this.rating = '';
@@ -750,6 +770,19 @@ function Player(id, type, xbmcController, playlist) {
 			self.playlist.clear();
 			self.playlist.addEpisode(episodeid);
 			self.playPlaylist();
+		};
+		/** Gets a string representation of the currently playing item */
+		this.getCurrentItemName = function(callback) {
+			_xbmc.getLabels(['VideoPlayer.Title'], function(response) {
+				callback(response['VideoPlayer.Title']);
+			});
+		};
+	} else { //pictures
+		/** Gets a string representation of the currently playing item */
+		this.getCurrentItemName = function(callback) {
+			_xbmc.getLabels(['Player.Title'], function(response) {
+				callback(response['Player.Title']);
+			});
 		};
 	}
 	this.playPlaylist = function(position) {
@@ -775,6 +808,136 @@ function Player(id, type, xbmcController, playlist) {
 			playerid : id
 			,to: 'next'
 		}, null, false);
+	};
+
+	this.seek = {
+		/**
+		 * Seeks to the specified percentage
+		 */
+		toPercentage: function(percentage) {
+			_xbmc.Player.Seek({
+				playerid: id, 
+				value: percentage,
+			}, null, false);
+		},
+		/**
+		 * Seeks to the specified time
+		 */
+		toTime: function(hours, minutes, seconds) {
+			_xbmc.Player.Seek({
+				playerid: id, 
+				value: {
+					hours: hours,
+					minutes: minutes,
+					seconds: seconds,
+					milliseconds: 0
+				},
+			}, null, false);
+		},
+		/**
+		 * Seeks forward by a predefined amount
+		 */
+		forward: function(bigJump) {
+			if (bigJump) {
+				_xbmc.Player.Seek({
+					playerid: id, value: 'bigforward',
+				}, null, false);
+			} else {
+				_xbmc.Player.Seek({
+					playerid: id, value: 'smallforward',
+				}, null, false);
+			}
+		},
+		/**
+		 * Seeks backward by a predefined amount
+		 */
+		backward: function(bigJump) {
+			if (bigJump) {
+				_xbmc.Player.Seek({
+					playerid: id, value: 'bigbackward',
+				}, null, false);
+			} else {
+				_xbmc.Player.Seek({
+					playerid: id, value: 'smallbackward',
+				}, null, false);
+			}
+		}
+	};
+
+	/**
+	 * Sets the repeat mode - 'off', 'one', 'all'
+	 */
+	this.setRepeat = function(repeat) {
+		_xbmc.Player.SetRepeat({playerid: id, repeat: repeat}, null, false);
+	}
+
+	/**
+	 * Sets the shuffle mode - true/false
+	 */
+	this.setShuffle = function(shuffle) {
+		_xbmc.Player.SetRepeat({playerid: id, shuffle: shuffle}, null, false);
+	}
+
+	/**
+	 * Toggles the shuffle mode on or off
+	 */
+	this.toggleShuffle = function() {
+		_xbmc.Player.SetRepeat({playerid: id, shuffle: 'toggle'}, null, false);
+	}
+
+	/**
+	 * Sets the play speed (fastforward/rewind) mode - 1 (normal), 2, 4, 8, -2, -4, -8
+	 */
+	this.setSpeed = function(speed) {
+		_xbmc.Player.SetSpeed({playerid: id, speed: speed}, null, false);
+	}
+
+	/**
+	 * Gets all properties available for the current player
+	 */
+	this.getDetails = function(callback) {
+		_xbmc.Player.GetProperties({
+			playerid: id,
+			properties: [
+				"type",
+				"partymode",
+				"speed",
+				"time",
+				"percentage",
+				"totaltime",
+				"playlistid",
+				"position",
+				"repeat",
+				"shuffled",
+				"canseek",
+				"canchangespeed",
+				"canmove",
+				"canzoom",
+				"canrotate",
+				"canshuffle",
+				"canrepeat",
+				"currentaudiostream",
+				"audiostreams",
+				"subtitleenabled",
+				"currentsubtitle",
+				"subtitles",
+				"live"
+		    ]
+		}, callback, false);
+	};
+
+	/**
+	 * Gets the current progress (time) for the currently playing item
+	 */
+	this.getProgress = function(callback) {
+		_xbmc.Player.GetProperties({
+			playerid: id,
+			properties: [
+				"time",
+				"percentage",
+				"totaltime",
+		    ]
+		}, callback, false);
 	};
 }
 
