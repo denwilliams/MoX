@@ -9,3 +9,5 @@ Check out the project site for more details: http://denwilliams.github.io/MoX/
 This project uses my XBMC Controller library for API communications: http://denwilliams.github.io/XbmcControllerJs/
 
 MoX is built using the Durandal SPA framework, including Knockout, and RequireJS. jLinq is used for data sorting and manipulation. Bootstrap 3 is used for UI styling.
+
+Because there aren't any CORS issues in web sockets, you can try it out the alpha version on rawgithhub: https://rawgithub.com/denwilliams/MoX/master/config.html
