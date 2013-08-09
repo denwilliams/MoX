@@ -47,7 +47,7 @@ function(config, xbmc)
 			tvEpisodes: tvEpisodes,
 			weather: weather,
 			system: system,
-			//clearCache = xbmc.controller.clearCache
+			clearCache: clearCache,
 		};
 
 	init();
@@ -74,6 +74,12 @@ function(config, xbmc)
 		        $(element).attr('src',formattedValue);
 		    }
 		};
+	}
+
+	function clearCache() {
+		if (xbmc.controller) {
+			xbmc.controller.clearCache();
+		}
 	}
 	
 	// ################# MUSIC #################

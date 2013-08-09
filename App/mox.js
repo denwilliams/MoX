@@ -60,4 +60,5 @@ function(app, viewLocator, system, router, logger, config) {
         //	alert('Invalid link - ' + route);
         //};
     });
+
 });

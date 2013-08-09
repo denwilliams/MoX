@@ -4,10 +4,11 @@
     'durandal/app',
     'services/logger',
     'services/xbmccontext',
+    'services/keyboard',
     'config',
     'koextras',
 ], 
-function (router, app, logger, xbmcContext, config) {
+function (router, app, logger, xbmcContext, keyboard, config) {
 
     return {
         router: router,
