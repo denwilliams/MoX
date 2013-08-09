@@ -11,8 +11,8 @@
 	</div>
 
 	<blockquote data-bind="html: description"></blockquote>
-    <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Shows..."></form>
-	<h3>Shows</h3>
+    <form class="form-inline"><input class="form-control list-filter" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Shows..."></form>
+	<h3><span data-bind="html: showCount"></span> Shows</h3>
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
 	<ul class="tvshows" data-bind="foreach: shows">
 		<li data-bind="css: { altrow: $index()%2 }">

@@ -36,6 +36,7 @@ function(config, xbmc, notify) {
 			displayName: 'TV Shows',
 			description: 'Stuff',
 			shows: visibleShows,
+			showCount: ko.computed(function() {return searchResults().length;}),
 			searchTerm: searchTerm,
 			loaded: showsLoaded,
 			loadMore: loadMoreShows,

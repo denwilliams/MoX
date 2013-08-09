@@ -4,7 +4,7 @@
 		<a href="#" class="btn btn-refresh"><i class="icon-refresh"></i> Refresh</a>
 	</div>
     <blockquote data-bind="html:description"></blockquote>
-    <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Movies..."></form>
+    <form class="form-inline"><input class="form-control list-filter" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Movies..."></form>
     <h3><span data-bind="text: searchResultsCount"></span> Titles</h3>
     <div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
     <ul class="movies" data-bind="foreach: movies">
