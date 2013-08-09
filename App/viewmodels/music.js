@@ -9,6 +9,7 @@ function(config,xbmcDataContext, notify) {
 	        displayName: 'MoX - Music',
 	        description: 'Stuff',
 	        artists: filteredArtists,
+	        artistCount: ko.computed(function() { return filteredArtists().length; }),
 	        searchTerm: searchTerm,
 	        loaded: loaded,
 	        artistUrl: config.url.forArtist,

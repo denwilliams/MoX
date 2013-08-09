@@ -14,20 +14,19 @@
 	<div class="loader loader-64 loader-inline" data-bind="visible: !episodesLoaded()"></div>
 	<ul class="episodes" data-bind="foreach: episodes, visible: episodesLoaded">
 		<li data-bind="css: { altrow: $index()%2 }">
-	        <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 			<a data-bind="attr: {href: ''}">
+		        <img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 				<h4 data-bind="text: label"></h4>
+				<div class="rating" data-bind="numericText: rating, precision: 1"></div>
+				<div class="firstaired" data-bind="text: firstaired"></div>
+				<div class="plot" data-bind="text: plot"></div>
+		        <div class="runtime">
+		        	<span data-bind="visible: resume.position > 0"><span data-bind="hhmm: resume.position"></span> / </span>
+		        	<span data-bind="hhmm: runtime"></span> 
+		        	<i class="icon-play" data-bind="visible: resume.position > 0, attr: {title: resume.position + '/' + resume.total}"></i>
+		        </div>
+				<!--<div data-bind="json: streamdetails"></div>-->
 			</a>
-			<div class="rating" data-bind="numericText: rating, precision: 1"></div>
-			<div class="firstaired" data-bind="text: firstaired"></div>
-			<div class="plot" data-bind="text: plot"></div>
-	        <div class="runtime">
-	        	<span data-bind="visible: resume.position > 0"><span data-bind="hhmm: resume.position"></span> / </span>
-	        	<span data-bind="hhmm: runtime"></span> 
-	        	<i class="icon-play" data-bind="visible: resume.position > 0, attr: {title: resume.position + '/' + resume.total}"></i>
-	        </div>
-			<!--<div data-bind="json: streamdetails"></div>-->
-			
 			<div class="buttons btn-group">
 	        	<a class="btn btn-showinfo"><i class="icon-info-sign"></i> Info</a>
 	        	<a class="btn btn-queue" data-bind="" href="#"><i class="icon-plus-sign"></i> Queue</a>

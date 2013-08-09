@@ -21,17 +21,16 @@
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loadedAlbums()"></div>
 	<ul class="albums" data-bind="foreach: albums, visible: loadedAlbums">
 		<li data-bind="css: { altrow: $index()%2 }">
-			<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
-			<a data-bind="text: label, attr: {href: $parent.albumUrl(albumid)}">
+			<a data-bind="attr: {href: $parent.albumUrl(albumid)}">
+				<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 				<h4 data-bind="text: label"></h4>
+				<div class="rating" data-bind="numericText: rating, precision: 1"></div>
+				<div class="artist" data-bind="text: artist"></div>
+				<div class="year" data-bind="text: year"></div>
+				<div class="genre" data-bind="text: genre"></div>
+				<div class="playcount" data-bind="text: playcount"></div>
+				<div class="albumlabel" data-bind="text: albumlabel"></div>
 			</a>
-			<div class="rating" data-bind="numericText: rating, precision: 1"></div>
-			<div class="artist" data-bind="text: artist"></div>
-			<div class="artist" data-bind="text: displayartist"></div>
-			<div class="year" data-bind="text: year"></div>
-			<div class="genre" data-bind="text: genre"></div>
-			<div class="playcount" data-bind="text: playcount"></div>
-			<div class="albumlabel" data-bind="text: albumlabel"></div>
 			
 			<div class="buttons btn-group">
 				<a class="btn btn-showinfo"><i class="icon-info-sign"></i> Info</a>

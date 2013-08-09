@@ -16,15 +16,15 @@
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
 	<ul class="tvshows" data-bind="foreach: shows">
 		<li data-bind="css: { altrow: $index()%2 }">
-			<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 			<a data-bind="attr: {href: $parent.showUrl(tvshowid)}">
+				<img class="thumbnail" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 				<h4 data-bind="text: label"></h4>
+				<div class="year" data-bind="text: year"></div>
+				<div class="genre" data-bind="text: genre"></div>
+				<div class="rating" data-bind="numericText: rating, precision: 1"></div>
+				<div class="studio" data-bind="text: studio"></div>
+				<div class="premiered" data-bind="text: premiered"></div>
 			</a>
-			<div class="year" data-bind="text: year"></div>
-			<div class="genre" data-bind="text: genre"></div>
-			<div class="rating" data-bind="numericText: rating, precision: 1"></div>
-			<div class="studio" data-bind="text: studio"></div>
-			<div class="premiered" data-bind="text: premiered"></div>
 			
 			<div class="buttons btn-group">
 				<a class="btn btn-imdb" target="_blank" data-bind="attr: {href: $parent.tvdbUrl(imdbnumber)}" href="">TVDB</a>

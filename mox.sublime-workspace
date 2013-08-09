@@ -1,0 +1,527 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sort",
+				"sortBy"
+			],
+			[
+				"re",
+				"results"
+			],
+			[
+				"o",
+				"observableArray"
+			],
+			[
+				"se",
+				"searchTerm"
+			],
+			[
+				"list",
+				"listVisible"
+			],
+			[
+				"search",
+				"searchResults"
+			],
+			[
+				"arti",
+				"artistid"
+			],
+			[
+				"tv",
+				"tvshowId"
+			],
+			[
+				"view",
+				"viewAttached"
+			],
+			[
+				"navb",
+				"navbar-inner"
+			],
+			[
+				"sess",
+				"sessionStorage"
+			],
+			[
+				"_",
+				"_volume"
+			],
+			[
+				"vol",
+				"volume"
+			],
+			[
+				"val",
+				"valueAccessor"
+			],
+			[
+				"on",
+				"onClose"
+			],
+			[
+				"ep",
+				"episodes"
+			],
+			[
+				"sele",
+				"selectedSeason"
+			],
+			[
+				"obser",
+				"observableArray"
+			],
+			[
+				"setP",
+				"setPage"
+			],
+			[
+				"new",
+				"newValue"
+			],
+			[
+				"mu",
+				"muted"
+			],
+			[
+				"curr",
+				"currentMute"
+			],
+			[
+				"visi",
+				"visible"
+			],
+			[
+				"pro",
+				"property"
+			],
+			[
+				"cur",
+				"currentTitle"
+			],
+			[
+				"vi",
+				"video"
+			],
+			[
+				"getL",
+				"getLabels"
+			],
+			[
+				"onPl",
+				"onPlaylistChanged"
+			],
+			[
+				"getAc",
+				"getActivePlayerDetails"
+			],
+			[
+				"noti",
+				"notifyPlayerDetailsChanged"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"_x",
+				"_xbmc"
+			],
+			[
+				"show",
+				"showid"
+			],
+			[
+				"selec",
+				"selectedShow"
+			],
+			[
+				"ob",
+				"observable"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"act",
+				"active"
+			],
+			[
+				"ref",
+				"refreshTimer"
+			],
+			[
+				"acti",
+				"activePlayer"
+			],
+			[
+				"_ad",
+				"_addPlayer"
+			],
+			[
+				"pla",
+				"player"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"cac",
+				"cacheObj"
+			],
+			[
+				"has",
+				"hasLocalStorage"
+			],
+			[
+				"puh",
+				"pushAll"
+			],
+			[
+				"art",
+				"artists"
+			],
+			[
+				"rb",
+				"rgba()"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"bac",
+				"background-repeat"
+			],
+			[
+				"th",
+				"thumbnail"
+			],
+			[
+				"bre",
+				"breadcrumbs"
+			],
+			[
+				"load",
+				"loadArtist"
+			],
+			[
+				"fn",
+				"fnName"
+			],
+			[
+				"push",
+				"pushAll"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"sel",
+				"self"
+			],
+			[
+				"page",
+				"pageName"
+			],
+			[
+				"path",
+				"pathArray"
+			],
+			[
+				"vis",
+				"visibleAlbums"
+			],
+			[
+				"Audio",
+				"AudioLibrary"
+			],
+			[
+				"loadA",
+				"loadArtist"
+			],
+			[
+				"name",
+				"namespace"
+			],
+			[
+				"comm",
+				"commandName"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"start",
+				"startAutoRefresh"
+			],
+			[
+				"refresh",
+				"refreshTimer"
+			],
+			[
+				"m",
+				"monitorFunction"
+			],
+			[
+				"Current",
+				"currentArtist"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"get",
+				"GetInfoLabels"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 47.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/den/Git/MoXWeb/index.html",
+		"/Users/den/Git/MoXWeb/App/mox.js",
+		"/Users/den/Git/MoXWeb/Content/mox.less",
+		"/Users/den/Desktop/Uni Highlights.txt",
+		"/Users/den/Git/MoXWeb/App/viewmodels/dashboard.js",
+		"/Users/den/Git/MoXWeb/App/services/xbmcdatacontext.js",
+		"/Users/den/Git/MoXWeb/App/config.js",
+		"/Users/den/Git/MoXWeb/App/views/show.html",
+		"/Users/den/Git/MoXWeb/App/views/shell.html",
+		"/Users/den/Git/MoXWeb/Scripts/extensions/ko.extras.js",
+		"/Users/den/Git/MoXWeb/App/views/season.html",
+		"/Users/den/Git/MoXWeb/App/views/artist.html",
+		"/Users/den/Git/MoXWeb/App/viewmodels/artist.js",
+		"/Users/den/Git/MoXWeb/Scripts/xbmc/XbmcWebSocketsApi.js",
+		"/Users/den/Git/MoXWeb/Scripts/xbmc/XbmcController.js",
+		"/Users/den/Git/MoXWeb/Scripts/xbmc/XbmcProperties.js",
+		"/Users/den/Git/MoXWeb/App/viewmodels/tv.js",
+		"/Users/den/Git/MoXWeb/App/viewmodels/movies.js",
+		"/Users/den/Git/MoXWeb/App/views/movies.html",
+		"/Users/den/Git/MoXWeb/App/views/tv.html",
+		"/Users/den/Git/MoXWeb/App/views/music.html",
+		"/Users/den/Git/MoXWeb/App/services/xbmccontext.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/music.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/movies.js",
+		"/Users/den/Git/Durandal/Durandal/App/views/detail.html",
+		"/Users/den/Git/Durandal/Durandal/App/views/flickr.html",
+		"/Users/den/Git/Durandal/Durandal/App/views/shell.html",
+		"/Users/den/Git/Durandal/Durandal/App/views/welcome.html",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/flickr.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/artists.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/welcome.js",
+		"/Users/den/Git/Durandal/Durandal/index.html",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/artist.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/tv.js",
+		"/Users/den/Git/Durandal/Durandal/App/viewmodels/shell.js",
+		"/Users/den/Git/Durandal/Durandal/App/main.js",
+		"/Users/den/Git/Durandal/Durandal/App/views/music.html",
+		"/Users/den/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/css/mox.css",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/css/slider.css",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/utils.js",
+		"/Users/den/Git/XbmcControllerJs/_XbmcController.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/main.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/xbmc.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/model.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/index.html",
+		"/Users/den/Git/XbmcControllerJs/XbmcCachedQueries.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/modernizr.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/jquery.xbmc.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/js/x.js",
+		"/Users/den/Library/Application Support/XBMC/addons/webinterface.testremote/webinterface.default/index.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"onFa",
+			"_moni",
+			".player.pla",
+			"subscribe",
+			"data",
+			"volumev",
+			"slider",
+			"Mox",
+			"<i c",
+			"_x",
+			"showid",
+			"loadtitl",
+			"subsc",
+			"$.e",
+			"console.lo",
+			"setPath",
+			"refresh(",
+			"volume",
+			"console.lo",
+			".visi",
+			"loadart",
+			"_addFunction",
+			"loadar",
+			"onsole.lo",
+			"startautor",
+			"ListItem.VideoResolution",
+			"response.re",
+			"r.",
+			"onerrorc",
+			"settings.",
+			"playal",
+			"getact",
+			"getactive",
+			"playA",
+			"play",
+			"load",
+			"thumbn",
+			"_onerr",
+			"series",
+			"reset",
+			"id(",
+			"getactive",
+			"xbmc.",
+			"startA",
+			"monitor",
+			"context",
+			"JSONRPC",
+			"_xbm"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}

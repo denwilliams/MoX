@@ -5,7 +5,7 @@
 	</div>
 	<blockquote data-bind="html:description"></blockquote>
     <form class="form-inline"><input class="form-control" data-bind="value: searchTerm, valueUpdate:'keyup'" placeholder="Search Artists..."></form>
-	<h3>Artists</h3>
+	<h3><span data-bind="html: artistCount"></span> Artists</h3>
 	<div class="loader loader-64 loader-inline" data-bind="visible: !loaded()"></div>
 	<ul class="artists" data-bind="foreach: artists">
 		<div class="artist">
@@ -13,8 +13,8 @@
 				<a data-bind="attr: {href: $parent.artistUrl(artistid)}">
 					<img class="thumbnail" data-src="holder.js/100x50" data-bind="attr: {src: $parent.imageUrl(thumbnail)}" />
 					<h4 data-bind="text: artist"></h4>
+					<span class="label genre" data-bind="text: genre"></span>
 				</a>
-				<span class="label genre" data-bind="text: genre"></span>
 			</li>
 		</div>
 	</ul>
