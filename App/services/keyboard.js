@@ -1,6 +1,9 @@
 define(
-['services/xbmcplayercontext'],
-function(player) {
+[
+    'durandal/plugins/router',
+    'services/xbmcplayercontext'
+],
+function(router, player) {
 	var enabled = true,
 		keyboard = {
 			enable: function() { enabled = true; },
@@ -10,9 +13,20 @@ function(player) {
 	init();
 
 	function init() {
+        $(document).keyup(function (e){
+            switch (e.keyCode) {
+                case 27: // esc
+                    // clear & focus on doc
+                    $('input.list-filter, input.global-search').val('').change().blur();
+                    break;
+            }
+        });
+
 		$(document).keypress(function (e){
             // cancel if in an input field
-            if( enabled === false || $(e.target).is(":input") ) return;
+            if( enabled === false ) return;
+
+            if ( $(e.target).is(":input") ) return;
 
             // see http://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
             switch (e.keyCode) {
@@ -49,10 +63,14 @@ function(player) {
                     router.navigateTo('#/');
                     break;
                 case 102: // F
-                    // Jump to the global search field
+                    // Jump to the list filter field
+                    e.preventDefault();
+                    $('input.list-filter').focus();
                     break;
                 case 115: // S
-                    // Jump to the search field
+                    // Jump to the global search field
+                    e.preventDefault();
+                    $('input.global-search').focus();
                     break;
                 case 90: // Z
                     // Back

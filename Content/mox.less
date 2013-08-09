@@ -65,6 +65,10 @@
 		border-top-color: transparent	;
 	};
 }
+.text-shadow() {
+	-webkit-text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
+	text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
+}
 
 body {
 	color: @standard-text-color;
@@ -80,8 +84,7 @@ body {
 	.message {
 		font-size: 5em;
 		line-height: 1.5em;
-		-webkit-text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
-		text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+		.text-shadow;
 		text-transform: uppercase;
 	}
 	.icon-spinner {
@@ -168,15 +171,60 @@ body {
 	ul {
 		.item-list;
 		text-align: center;
-		height: 160px;
-		overflow-x: scroll;
+		//height: 160px;
+		//overflow-x: scroll;
 		li {
-			.tile-list-item(195px,140px);
-			padding: 0 20px;
+			//.tile-list-item(195px,140px);
+			//padding: 0 20px;
+			position: relative;
+			margin-bottom: 10px;
+			.btn {
+				opacity: 0.5;
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+			img {
+				width: 80%;
+				margin: 0 auto;
+			}
+			.buttons {
+				position: absolute;
+				width: 100%;
+				top: 40%;
+				height: 0;
+			}
+			h4 {
+				position: absolute;
+				bottom: 10px;
+				width: 100%;
+				color: #fff;
+				font-size: 1em;
+				.text-shadow;
+			}
+		}
+		&.recentalbums {
+			li {
+				img {
+					width: 70%;
+				}
+			}
+		}
+		&.recentmovies {
+			li {
+				img {
+					width: 55%;
+				}
+			}
 		}
 	}
-	h4 {
+	h3 {
 		clear: both;
+		text-align: center;
+	}
+	.loader {
+		text-align: center;
+		margin: 0 auto;
 	}
 }
 

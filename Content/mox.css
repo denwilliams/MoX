@@ -12,8 +12,8 @@ body {
 .splash .message {
   font-size: 5em;
   line-height: 1.5em;
-  -webkit-text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
-  text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
+  text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
   text-transform: uppercase;
 }
 .splash .icon-spinner {
@@ -102,21 +102,49 @@ body {
   padding: 0;
   list-style-type: none;
   text-align: center;
-  height: 160px;
-  overflow-x: scroll;
 }
 .recent ul li {
   position: relative;
-  display: inline;
-  padding: 0;
-  float: left;
-  width: 195px;
-  height: 140px;
-  overflow: hidden;
-  padding: 0 20px;
+  margin-bottom: 10px;
 }
-.recent h4 {
+.recent ul li .btn {
+  opacity: 0.5;
+}
+.recent ul li .btn:hover {
+  opacity: 0.8;
+}
+.recent ul li img {
+  width: 80%;
+  margin: 0 auto;
+}
+.recent ul li .buttons {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  height: 0;
+}
+.recent ul li h4 {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  color: #fff;
+  font-size: 1em;
+  -webkit-text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
+  text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 2px;
+}
+.recent ul.recentalbums li img {
+  width: 70%;
+}
+.recent ul.recentmovies li img {
+  width: 55%;
+}
+.recent h3 {
   clear: both;
+  text-align: center;
+}
+.recent .loader {
+  text-align: center;
+  margin: 0 auto;
 }
 .movies li,
 .tvshows li,

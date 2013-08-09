@@ -210,6 +210,9 @@
 		},
 		update: function(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam) {
 			ko.bindingHandlers.foreach.update(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam);
+		},
+		update2: function(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam) {
+			ko.bindingHandlers.foreach.update(element, valueAccessor, allBindingsAccessor, fourthParam, fifthParam);
 			var count = ko.utils.unwrapObservable(valueAccessor()).length;
 			// generate unique id
 			if (count > 0) {
